@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CogniSys – Sistema de Gestion</title>
+</head>
+<style>
+/* Contenedor para centrar todo */
+.container-center {
+display: flex;
+justify-content: center;
+margin: 20px 0;
+}
+/* Estilo del details para que parezca botón */
+details {
+width: fit-content; /* Que ocupe solo lo necesario */
+}
+summary {
+background-color: rgba(87, 180, 149, 0.6); /* Color azul */
+color: rgb(255, 255, 255);
+padding: 12px 25px;
+border-radius: 8px;
+cursor: pointer;
+font-weight: bold;
+list-style: none; /* Quita la flecha por defecto */
+text-align: center;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+transition: background 0.3s;
+}
+/* Efecto al pasar el mouse */
+summary:hover {
+background-color: #0f48c9;
+}
+/* Quita el puntito por defecto de algunos navegadores */
+summary::-webkit-details-marker {
+display: none;
+}
+/* El contenido que se despliega */
+.contenido {
+margin-top: 10px;
+padding: 15px;
+background: #f8f9fa;
+border-radius: 8px;
+border: 1px solid #e0e0e0;
+min-width: 250px;
+}
+</style>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    body { font-family:'Poppins',sans-serif;margin:0;padding:0;background:rgba(238, 238, 238, 0.99);color:#333; }
+    
+    /* NAVBAR */
+    nav { display:flex;justify-content:space-between;align-items:center;padding:20px 50px;background:white;box-shadow:0 4px 20px rgba(0,0,0,0.08);position:sticky;top:0;z-index:1000; }
+    nav .logo{font-size:28px;font-weight:700;color: #5d6fbf;;} 
+    nav ul{list-style:none;display:flex;gap:25px;} 
+    nav ul li a{text-decoration:none;color:#000000;font-weight:500;transition:0.3s;} 
+    nav ul li a:hover{color:#3796b6;}
+
+    /* HERO */
+    .hero{background:linear-gradient(rgba(255, 255, 255, 0.748),rgba(116, 183, 225, 0.819)),url("https://www.tecnica3hurlingham.com/wp-content/uploads/2026/02/Gemini_Generated_Image_mitnnmitnnmitnnm.png" );background-size:cover;background-position:center;padding:150px 20px;text-align:center;color:white;} 
+    
+    .hero p{font-size:22px;margin-top:15px;opacity:0.9;} 
+    .hero button{margin-top:30px;background:white;color:#4d4f9f;padding:15px 35px;border-radius:50px;font-weight:600;font-size:18px;border:none;cursor:pointer;transition:0.3s;} 
+    .hero button:hover{background:#d0cdd1c6;}
+
+    section{width:90%;max-width:1100px;background:white;margin:60px auto;padding:60px;border-radius:25px;box-shadow:0 10px 30px rgba(0,0,0,0.08);} 
+    h2{text-align:center;font-size:36px;color:#5492b3;margin-top:0;}
+    
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px;} 
+    .service-card{background:rgba(73, 132, 177, 0.6);border-radius:18px;padding:25px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,0.05);transition:0.3s;} 
+    .service-card:hover{transform:translateY(-10px);box-shadow:0 10px 25px rgba(0,0,0,0.1);} 
+    .service-card h3{color:rgb(255, 255, 255);font-size:24px;margin-bottom:10px;}
+  
+    /*IMAGENES*/
+    .galeria {
+     display: flex; /* Pone los elementos uno al lado del otro */
+     justify-content: space-around; /* Espacia las imágenes */
+     align-items: center; /* Alinea verticalmente al centro */
+     gap: 10px; /* Espacio entre imágenes */
+     }
+     /* Ajusta el tamaño de las imágenes */
+    .galeria img {
+     width: 23%; /* Para que entren las 4 en la fila */
+     height: auto; /* Mantiene la proporción */
+    }
+   
+</style>
+
+  <style>
+    /*RESERVA*/
+
+    /* Contenedor para centrar todo */
+    .container-center {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    /* Estilo del details para que parezca botón */
+    details {
+        width: fit-content; /* Que ocupe solo lo necesario */
+    }
+    summary {
+        background-color: #2283b8; /* Color azul */
+        color: white;
+        padding: 12px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        list-style: none; /* Quita la flecha por defecto */
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background 0.3s;
+    }
+    /* Efecto al pasar el mouse */
+    summary:hover {
+        background-color: #496cb8;
+    }
+    /* Quita el puntito por defecto de algunos navegadores */
+    summary::-webkit-details-marker {
+        display: none;
+    }
+    /* El contenido que se despliega */
+    .contenido {
+        margin-top: 10px;
+        padding: 15px;
+        background:#496cb8;
+        border-radius: 8px;
+        border: 1px solid #1c1414;
+        min-width: 250px;
+    }
+    </style>
+    
+ 
+
+<style>
+     /* HISTORIA */
+    .historia{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:40px;} 
+    .historia img{width:100%;border-radius:20px;height:100px;object-fit:cover;box-shadow:0 5px 20px rgba(0,0,0,0.1);} 
+    
+    
+    /* BENEFICIOS*/
+    .Beneficio{background:#ffffff;padding:25px;border-radius:18px;margin:20px 0;font-style:italic;border-left:6px solid #2e4a98;}
+    
+
+    /* CONTACTO */
+    .contact-box{background:#ffffff;padding:25px;border-radius:20px;border-left:6px solid #492e98;} 
+
+    iframe{width:100%;height:350px;border:0;border-radius:20px;margin-top:30px;}
+
+    footer{background:rgba(73, 132, 177, 0.6);color:white;text-align:center;padding:40px;margin-top:80px;font-size:17px;}
+</style>
+<body id="inicio">
+<!-- BOTÓN QUE SE DESPLIEGA -->
+<details style="position: fixed; bottom: 25px; right: 25px; z-index: 9999;">
+    <summary style="background: #50afcc; color: white; padding: 15px 20px; border-radius: 50px; font-weight: bold; cursor: pointer; list-style: none; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+      Contactanos
+    </summary>
+    <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
+      <!-- BOTÓN DE UBICACION -->
+      <a href="https://maps.app.goo.gl/RPCFAWXXe3CbjE9D6" target="_blank" 
+         style="background:  #50AFCC; color: white; padding: 12px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; width: fit-content; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+         Ubicación</a>
+     <!-- BOTÓN DE INSTAGRAM -->
+      <a href="https://www.instagram.com/eest.n3?igsh=NjV2aHNlN3ZmY2d3" target="_blank" 
+         style="background:   #50afcc; color: white; padding: 12px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; width: fit-content; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+        Instagram</a>
+    <!-- BOTÓN DE GMAIL -->
+      <a href="mailto:eest3hurlingham@abc.gob.ar" target="_blank" 
+         style="background:  #50afcc; color: white; padding: 12px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; width: fit-content; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+        Gmail</a>
+  <!-- BOTÓN DE FACEBOOK-->
+      <a href="https://www.tecnica3hurlingham.com/" target="_blank" 
+         style="background:   #50afcc; color: white; padding: 12px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; width: fit-content; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
+         Facebook</a>
+  
+    </div>
+  </details>
+  
+<style>
+/*CARRUSEL DE IMAGENES*/
+.carrusel {
+    max-width: 90%;
+    margin: auto;
+    overflow: hidden; /* Esconde lo que sobra */
+}
+
+.carrusel-inner {
+    display: flex;
+    animation: slide 15s infinite linear; /* Se mueve solo */
+}
+
+.carrusel-item {
+    min-width: 25%; /* Entran 4 */
+    text-align: center;
+    padding: 20px;
+}
+
+.carrusel-item img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* LA ANIMACIÓN QUE LAS MUEVE */
+@keyframes slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Se pausa si pasas el mouse por arriba */
+.carrusel-inner:hover {
+    animation-play-state: paused;
+}
+
+ </style> 
+
+  <nav>
+    <div class="logo">E.E.S.T N3 Victor Mercante</div>
+    <ul>
+     <details>
+          <summary style="cursor:pointer; background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; list-style:none;">
+            inicio
+          </summary>
+          <ul>
+            <li><a href="prieto kensho 2.html#historia">Personal y Profesional</a></li>
+            <li><a href="prieto kensho 2.html#servicios">Areas de competencia</a></li>
+            <li><a href="prieto kensho 2.html#beneficios">Estructura curricular</a></li>
+            <li><a href="prieto kensho 2.html#integracion">nuestro equipo</a></li>
+            <li><a href="prieto kensho 2.html#contacto">Contacto</a></li>
+          </ul>
+        </details>
+  
+      <!-- OPCIÓN 1: CUADERNILLOS -->
+      <li>
+        <details>
+          <summary style="cursor:pointer; background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; list-style:none;">
+            Cuadernillos
+          </summary>
+          <ul>
+            <li><a href="./descargas.html">Descargas</a></li>
+          </ul>
+        </details>
+      </li>
+  
+      <!-- OPCIÓN 2: MESA DE EXAMEN -->
+      <li>
+        <details>
+          <summary style="cursor:pointer; background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; list-style:none;">
+            Mesa de examen
+          </summary>
+          <ul>
+            <li><a href="./mesa_de_examen.html#fechas">Fechas y Horarios</a></li>
+          </ul>
+        </details>
+      </li>
+  
+      <!-- OPCIÓN 3: PRACTICAS -->
+      <li>
+        <details>
+          <summary style="cursor:pointer; background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; list-style:none;">
+            Practicas profesionalizantes
+          </summary>
+          <ul>
+            <li><a href="practicas profesionales.html#objetivos">Objetivos</a></li>
+            <li><a href="practicas profesionales.html#trabajos">Trabajos Realizados</a></li>
+          </ul>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary style="cursor:pointer; background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; list-style:none;">
+            Practicas de años anteriores
+          </summary>
+          <ul>
+            <li><a href="prieto proyecto de anteriores.html">Objetivos</a></li>
+            <li><a href="prieto proyecto de anteriores.html">Trabajos Realizados</a></li>
+          </ul>
+        </details>
+      </li>
+      <li><a href="#contacto">Contacto</a></li>
+
+    </ul>
+  </nav>
+
+<div class="hero">
+    <h1>E.E.S.T N3  Víctor Mercante</h1>
+    <p>"No solo solucionamos problemas, creamos el futuro digital."</p>
+
+</div>
+
+<section id="historia">
+    <h2>El Técnico en Informática Profesional y Personal </h2>
+    <p> El Técnico en Informática Profesional y Personal estará capacitado para asistir al usuario de productos o servicios informáticos,brindándo servicios de instalación, capacitación, sistematización, mantenimiento primario, resolución de problemas derivados de la operatoria, y apoyo a la contratación de productos o servicios informáticos.</p>
+    <div class="historia">
+    <img src=" https://www.tecnica3hurlingham.com/wp-content/uploads/2026/02/datacenter.png">
+    <img src=" https://primus.ai/wp-content/uploads/2024/11/integracion-de-sistemas.jpg">
+    <img src="https://i.ytimg.com/vi/Pgqj2hVEjKI/maxresdefault.jpg">
+    </div>
+</section>
+
+<section id="servicios" >
+    <div class="services-grid">
+        <div class="service-card"><h3>ÁREAS DE COMPETENCIAS</h3><p>Mantener componentes de equipos de computación y comunicaciones, programas y sistemas.</p></div>
+       
+    </div>
+    <div>
+        <table>
+        <tr><td>1</td><td> Diagnosticar fallas y problemas encontrados por los usuarios.</td></tr>
+        <tr><td>2</td><td>Reemplazar componentes defectuosos de equipos de computación y redes.</td></tr>
+        <tr><td>3</td><td> Reinstalar componentes de programas y sistemas.</td></tr>
+        <tr><td>4</td><td>Configurar componentes de equipos y redes, programas y sistemas.</td></tr>
+        <tr><td>5</td><td>Programar y efectuar mantenimiento preventivo de componentes de equipos y redes, programas y sistemas.</td></tr>
+     </table>
+    </div>
+    
+
+</section>
+
+<section id="beneficios">
+<h2>ESTRUCTURA CURRICULAR TÉCNICO EN INFORMÁTICA PROFESIONAL Y PERSONAL </h2>
+<p> La tecnicatura se estructura en 3 niveles formativos; Formación General, Formación Científico Tecnológico y Formación Técnico Específica.</p>
+
+<!-- CONTENEDOR CON BARRAS LATERAL Y DE ABAJO -->
+<div style="overflow-x: auto; overflow-y: auto; max-height: 500px; margin: 20px 0; border-radius: 10px; border: 1px solid #ddd;">
+
+    <table style="width: 100%; border-collapse: collapse; text-align: center;">
+      
+      <thead>
+        <tr style="background: #444; color: white;">
+          <th colspan="2">CUARTO AÑO</th>
+          <th colspan="2">QUINTO AÑO</th>
+          <th colspan="2">SEXTO AÑO</th>
+          <th colspan="2">SÉPTIMO AÑO</th>
+        </tr>
+        <tr style="background: #666; color: white;">
+          <th>Materia</th>
+          <th>CHT</th>
+          <th>Materia</th>
+          <th>CHT</th>
+          <th>Materia</th>
+          <th>CHT</th>
+          <th>Materia</th>
+          <th>CHT</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <!-- FORMACIÓN GENERAL -->
+        <tr><td colspan="8" style="background: #eee; font-weight: bold; text-align: left;">FORMACIÓN GENERAL</td></tr>
+        <tr><td>Literatura</td><td>72</td><td>Literatura</td><td>72</td><td>Literatura</td><td>72</td><td>Prácticas Profesionalizantes</td><td>200</td></tr>
+        <tr><td>Ingles</td><td>72</td><td>Ingles</td><td>72</td><td>Ingles</td><td>72</td><td></td><td></td></tr>
+        <tr><td>Educación Física</td><td>72</td><td>Educación Física</td><td>72</td><td>Educación Física</td><td>72</td><td></td><td></td></tr>
+        <tr><td>Salud y Adolescencia</td><td>72</td><td>Política y Ciudadanía</td><td>72</td><td>Filosofía</td><td>72</td><td></td><td></td></tr>
+        <tr><td>Historia</td><td>72</td><td>Historia</td><td>72</td><td>Arte</td><td>72</td><td></td><td></td></tr>
+        <tr><td>Geografía</td><td>72</td><td>Geografía</td><td>72</td><td></td><td></td><td></td><td></td></tr>
+  
+        <!-- FORMACIÓN CIENTÍFICO TECNOLÓGICO -->
+        <tr><td colspan="8" style="background: #eee; font-weight: bold; text-align: left;">FORMACIÓN CIENTÍFICO TECNOLÓGICO</td></tr>
+        <tr><td>Matemática Ciclo Superior</td><td>144</td><td>Análisis Matemático</td><td>144</td><td>Matemática Aplicada</td><td>72</td><td>Emprendimientos Productivos</td><td>72</td></tr>
+        <tr><td>Física</td><td>108</td><td>Sistemas Digitales</td><td>108</td><td>Sistemas Digitales</td><td>108</td><td>Evaluación de Proyectos</td><td>72</td></tr>
+        <tr><td>Química</td><td>72</td><td>Teleinformática</td><td>144</td><td>Investigación Operativa</td><td>144</td><td>Modelos y Sistemas</td><td>72</td></tr>
+  
+        <!-- FORMACIÓN TÉCNICO ESPECÍFICA -->
+        <tr><td colspan="8" style="background: #eee; font-weight: bold; text-align: left;">FORMACIÓN TÉCNICO ESPECÍFICA</td></tr>
+        <tr><td>Laboratorio de Programación</td><td>72</td><td>Laboratorio de Programación</td><td>72</td><td>Laboratorio de Programación</td><td>72</td><td>Proyecto, Diseño e Implementación</td><td>144</td></tr>
+        <tr><td>Laboratorio de Hardware</td><td>144</td><td>Laboratorio de Hardware</td><td>144</td><td>Laboratorio de Hardware</td><td>144</td><td>Instalación, Mantenimiento y Reparación</td><td>144</td></tr>
+        <tr><td>Laboratorio de Sistemas Operativos</td><td>144</td><td>Laboratorio de Sistemas Operativos</td><td>144</td><td>Laboratorio de Sistemas Operativos</td><td>144</td><td>Instalación, Mantenimiento y Reparación de Redes</td><td>144</td></tr>
+        <tr><td>Laboratorio de Aplicaciones</td><td>72</td><td>Laboratorio de Aplicaciones</td><td>72</td><td>Laboratorio de Aplicaciones</td><td>72</td><td></td><td></td></tr>
+  
+        <!-- TOTAL HORAS -->
+        <tr style="font-weight: bold; background: #f0f0f0;">
+          <td colspan="2">TOTAL DE HORAS<br>RELOJ SEMANAL</td>
+          <td>35</td>
+          <td>TOTAL DE HORAS<br>RELOJ SEMANAL</td>
+          <td>35</td>
+          <td>TOTAL DE HORAS<br>RELOJ SEMANAL</td>
+          <td>35</td>
+          <td>TOTAL DE HORAS<br>RELOJ SEMANAL SIN PP</td>
+          <td>21</td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+
+  </section>
+
+<section id="integracion">
+        <h2>Conoce a nuestro equipo</h2>
+        <p> Nuestro equipo de conducción en conjunto a un amplio cuerpo de profesionales afronta los desafios de una industria en constante cambio. </p>
+        
+        <div class="carrusel">
+            <div class="carrusel-inner">
+          
+              <div class="carrusel-item">
+                <img src="https://www.tecnica3hurlingham.com/wp-content/uploads/2026/02/Claudia.png" alt="Claudia Ortiz">
+                <h3>Claudia Ortiz</h3>
+                <p>Directora</p>
+              </div>
+          
+              <div class="carrusel-item">
+                <img src="https://www.tecnica3hurlingham.com/wp-content/uploads/2026/02/Adriana.jpeg" alt="Adriana Ruiz">
+                <h3>Adriana Ruiz</h3>
+                <p>Vicedirectora</p>
+              </div>
+          
+              <div class="carrusel-item">
+                <img src="https://www.tecnica3hurlingham.com/wp-content/uploads/2026/02/Carolina-768x1441.jpeg" alt="Carolina Monzón">
+                <h3>Carolina Monzón</h3>
+                <p>Vicedirectora</p>
+              </div>
+          
+              <div class="carrusel-item">
+                <img src="https://www.tecnica3hurlingham.com/wp-content/uploads/2026/02/Melina-768x1464.jpeg" alt="Melina Barro Salmerón">
+                <h3>Melina Barro Salmerón</h3>
+                <p>Jefa de Área</p>
+              </div>
+          
+            </div>
+          </div>
+</section>
+
+
+<section id="contacto">
+    <h2>Contacto y Ubicación</h2>
+    <div class="contact-box">
+        <p><strong>WhatsApp:</strong> +54 1125513832</p>
+        <p><strong>Email:</strong> eest3hurlingham@abc.gob.ar </p>
+        <p><strong>Escuela:</strong></p>
+        <ul>
+            <li>E.E.S.T N3  Víctor Mercante – Hurlingham</li>
+            <a href="https://maps.app.goo.gl/aqLdN4bdG23btYYT8" target="_blank">Ver ubicación(puerta delantera)</a>
+            <a href="https://maps.app.goo.gl/yi6ssibZ41p9Vcq46" target="_blank">Ver ubicación(puerta trasera)</a>
+        </ul>
+    </div>   
+</section>
+
+<footer>
+<div class="container-center">
+    <details>
+      <summary>PREGUNTAS</summary>
+      <div class="contenido">
+           
+    <form action="https://formspree.io/f/mdapqjdw" method="POST" >
+    
+        <label>Nombre :</label><br>
+        <input type="text" name="nombre" required><br><br>
+    
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+    
+        <label>Fecha:</label><br>
+        <input type="date" name="fecha" required><br><br>
+    
+        <label>Hora:</label><br>
+        <input type="time" name="hora" required><br><br>
+    
+        <label>Mensaje adicional:</label><br>
+        <textarea name="mensaje"></textarea><br><br>
+    
+        <button type="submit">Reservar</button>
+    </form>
+   </details>
+</div>
+        
+</footer>
+
+</body>
+</html>
