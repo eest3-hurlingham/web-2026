@@ -1,223 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Cuadernillos 2026 – E.E.S.T N3</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-    body { font-family:'Poppins',sans-serif;margin:0;padding:0;background:rgba(238, 238, 238, 0.99);color:#333; }
-    
-    /* NAVBAR */
-    nav { display:flex;justify-content:space-between;align-items:center;padding:20px 50px;background:white;box-shadow:0 4px 20px rgba(0,0,0,0.08);position:sticky;top:0;z-index:1000; }
-    nav .logo{font-size:28px;font-weight:700;color:#5d6fbf;} 
-    nav ul{list-style:none;display:flex;gap:25px;} 
-    nav ul li a{text-decoration:none;color:#000000;font-weight:500;transition:0.3s;} 
-    nav ul li a:hover{color:#3796b6;}
-
-
-    /* HERO */
-    .hero{background:linear-gradient(rgba(255, 255, 255, 0.748),rgba(116, 183, 225, 0.819)),url("https://www.tecnica3hurlingham.com/wp-content/uploads/2026/02/Gemini_Generated_Image_mitnnmitnnmitnnm.png");background-size:cover;background-position:center;padding:150px 20px;text-align:center;color:white;} 
-    .hero button{align-items: center;}
-    .hero p{font-size:22px;margin-top:15px;opacity:0.9;} 
-    .hero button{margin-top:30px;background:white;color:#4d4f9f;padding:15px 35px;border-radius:50px;font-weight:600;font-size:18px;border:none;cursor:pointer;transition:0.3s;} 
-    .hero button:hover{background:#d0cdd1c6;}
-
-    section{width:90%;max-width:1100px;background:white;margin:60px auto;padding:60px;border-radius:25px;box-shadow:0 10px 30px rgba(0,0,0,0.08);} 
-    h2{text-align:center;font-size:36px;color:#5492b3;margin-top:0;}
-    
-    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;margin-top:40px;} 
-    .service-card{background:rgba(73, 132, 177, 0.6);border-radius:18px;padding:25px;text-align:center;box-shadow:0 5px 20px rgba(0,0,0,0.05);transition:0.3s;} 
-    .service-card:hover{transform:translateY(-10px);box-shadow:0 10px 25px rgba(0,0,0,0.1);} 
-    .service-card h3{color:rgb(255, 255, 255);font-size:24px;margin-bottom:10px;}
-</Style>
-    <body id="inicio">
-<!-- BOTÓN QUE SE DESPLIEGA -->
-<details style="position: fixed; bottom: 25px; right: 25px; z-index: 9999;">
-    <summary style="background: #50afcc; color: white; padding: 15px 20px; border-radius: 50px; font-weight: bold; cursor: pointer; list-style: none; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
-      Contactanos
-    </summary>
-    <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
-      <!-- BOTÓN DE UBICACION -->
-      <a href="https://maps.app.goo.gl/RPCFAWXXe3CbjE9D6" target="_blank" 
-         style="background:  #50AFCC; color: white; padding: 12px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; width: fit-content; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
-         Ubicación</a>
-     <!-- BOTÓN DE INSTAGRAM -->
-      <a href="https://www.instagram.com/eest.n3?igsh=NjV2aHNlN3ZmY2d3" target="_blank" 
-         style="background:   #50afcc; color: white; padding: 12px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; width: fit-content; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
-        Instagram</a>
-    <!-- BOTÓN DE GMAIL -->
-      <a href="mailto:eest3hurlingham@abc.gob.ar" target="_blank" 
-         style="background:  #50afcc; color: white; padding: 12px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; width: fit-content; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
-        Gmail</a>
-  <!-- BOTÓN DE FACEBOOK-->
-      <a href="https://www.tecnica3hurlingham.com/" target="_blank" 
-         style="background:   #50afcc; color: white; padding: 12px 18px; border-radius: 50px; text-decoration: none; font-weight: bold; width: fit-content; box-shadow: 0 3px 10px rgba(0,0,0,0.1);">
-         Facebook</a>
-  
-    </div>
-  </details>
-</style>
-     <style>
-    /*RESERVA*/
-    .container-center {
-        display: flex;
-        justify-content: center;
-        margin: 20px 0;
-    }
-    details {
-        width: fit-content;
-    }
-    summary {
-        background-color: #2283b8;
-        color: white;
-        padding: 12px 25px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-        list-style: none;
-        text-align: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: background 0.3s;
-    }
-    summary:hover {
-        background-color: #496cb8;
-    }
-    summary::-webkit-details-marker {
-        display: none;
-    }
-    .contenido {
-        margin-top: 10px;
-        padding: 15px;
-        background:#496cb8;
-        border-radius: 8px;
-        border: 1px solid #1c1414;
-        min-width: 250px;
-    }
-    </style>
-    <style>
-
-    /* Separadores */
-    .año-titulo { display: flex; align-items: center; gap: 15px; margin: 40px 0 20px; font-size: 18px; font-weight: 600; color: #5492b3; }
-    .año-titulo::before, .año-titulo::after { content: ''; flex: 1; height: 2px; background: linear-gradient(to right, #c5dff0, transparent); }
-    .año-titulo::before { background: linear-gradient(to right, transparent, #c5dff0); }
-
-    /* Grilla Descargas */
-    .descargas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
-    .card-descarga { background: white; border-radius: 18px; border: 2px solid #e0eef7; padding: 28px 24px; text-decoration: none; color: #333; display: flex; flex-direction: column; align-items: center; gap: 14px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-    .card-descarga:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(80,175,204,0.2); border-color: #50afcc; }
-    .card-icono { width: 60px; height: 60px; background: rgba(73,132,177,0.12); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
-    .card-nombre { font-weight: 600; font-size: 16px; text-align: center; color: #2e5f85; }
-    .card-badge { background: rgba(73,132,177,0.15); color: #2e6a99; border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 600; }
-    .btn-dl { margin-top: 6px; background: #50afcc; color: white; border-radius: 30px; padding: 8px 22px; font-size: 13px; font-weight: 600; }
-
-    /* ── FOOTER ── */
-    footer { background:rgba(73, 132, 177, 0.6); color:white; text-align:center; padding:40px; margin-top:80px; font-size:17px; }
-
-    /* ── BOTÓN FLOTANTE (Igual al de practicas) ── */
-    details.flotante { position: fixed; bottom: 25px; right: 25px; z-index: 9999; }
-    details.flotante summary { 
-        background: #50afcc; 
-        color: white; 
-        padding: 15px 20px; 
-        border-radius: 50px; 
-        font-weight: bold; 
-        cursor: pointer; 
-        list-style: none; 
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
-    }
-    details.flotante summary::-webkit-details-marker { display: none; }
-    .flotante-menu { margin-top: 10px; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
-    .flotante-menu a { 
-        background: #50afcc; 
-        color: white; 
-        padding: 12px 18px; 
-        border-radius: 50px; 
-        text-decoration: none; 
-        font-weight: bold; 
-        width: fit-content; 
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1); 
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadernillos 2026 — E.E.S.T N°3 Víctor Mercante</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body id="inicio">
 
+<!-- BOTÓN FLOTANTE -->
+<details class="flotante">
+    <summary>Contactanos</summary>
+    <div class="flotante-menu">
+        <a href="https://maps.app.goo.gl/aqLdN4bdG23btYYT8" target="_blank">📍 Ubicación</a>
+        <a href="https://www.instagram.com/eest.n3?igsh=NjV2aHNlN3ZmY2d3" target="_blank">📸 Instagram</a>
+        <a href="mailto:eest3hurlingham@abc.gob.ar">✉️ Gmail</a>
+    </div>
+</details>
+
+<!-- NAVBAR -->
 <nav>
-    <div class="logo">E.E.S.T N3 Victor Mercante</div>
+    <button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    <a href="index.html" class="logo">
+        <img src="https://www.tecnica3hurlingham.com/wp-content/uploads/2026/02/Gemini_Generated_Image_mitnnmitnnmitnnm.png" alt="Logo E.E.S.T N°3">
+        E.E.S.T N°3 Víctor Mercante
+    </a>
     <ul>
-      <details>
-          <summary style="cursor:pointer; background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; list-style:none;">
-            inicio
-          </summary>
-          <ul>
-            <li><a href="prieto kensho 2.html#historia">Personal y Profesional</a></li>
-            <li><a href="prieto kensho 2.html#servicios">Areas de competencia</a></li>
-            <li><a href="prieto kensho 2.html#beneficios">Estructura curricular</a></li>
-            <li><a href="prieto kensho 2.html#integracion">nuestro equipo</a></li>
-            <li><a href="prieto kensho 2.html#contacto">Contacto</a></li>
-          </ul>
-      </details>
-
-      <li>
-        <details>
-          <summary style="cursor:pointer; background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; list-style:none;">
-            Cuadernillos
-          </summary>
-          <ul>
-            <li><a href="./descargas.html#descargas">Descargas</a></li>
-          </ul>
-        </details>
-      </li>
-
-      <li>
-        <details>
-          <summary style="cursor:pointer; background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; list-style:none;">
-            Mesa de examen
-          </summary>
-          <ul>
-            <li><a href="./mesa_de_examen.html">Fechas y Horarios</a></li>
-            
-          </ul>
-        </details>
-      </li>
-
-      <li>
-        <details>
-          <summary style="cursor:pointer; background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; list-style:none;">
-            Practicas profesionalizantes
-          </summary>
-          <ul>
-            <li><a href="practicas profesionales.html#objetivos">Objetivos</a></li>
-            <li><a href="practicas profesionales.html#trabajos">Trabajos Realizados</a></li>
-          </ul>
-        </details>
-      </li>
-
-      <li>
-        <details>
-          <summary style="cursor:pointer; background:none; border:none; padding:0; margin:0; color:inherit; font:inherit; list-style:none;">
-            Practicas de años anteriores
-          </summary>
-          <ul>
-            <li><a href="prieto proyecto de anteriores.html">Objetivos</a></li>
-            <li><a href="prieto proyecto de anteriores.html">Trabajos Realizados</a></li>
-          </ul>
-        </details>
-      </li>
-
-      <li><a href="#contacto">Contacto</a></li>
+        <li>
+            <details>
+                <summary>Inicio</summary>
+                <ul>
+                    <li><a href="index.html#historia">Personal y Profesional</a></li>
+                    <li><a href="index.html#servicios">Áreas de competencia</a></li>
+                    <li><a href="index.html#beneficios">Estructura curricular</a></li>
+                    <li><a href="index.html#integracion">Nuestro equipo</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Cuadernillos</summary>
+                <ul>
+                    <li><a href="descargas.html#descargas">Descargas</a></li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Mesa de examen</summary>
+                <ul>
+                    <li><a href="mesa_de_examen.html">Fechas y Horarios</a></li>
+                </ul>
+            </details>
+        </li>
+        <li>
+            <details>
+                <summary>Prácticas profesionalizantes</summary>
+                <ul>
+                    <li><a href="practicas-profesionales.html#objetivos">Objetivos</a></li>
+                    <li><a href="practicas-profesionales.html#trabajos">Trabajos Realizados</a></li>
+                </ul>
+            </details>
+        </li>
+        <li><a href="index.html#contacto">Contacto</a></li>
     </ul>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
     <h1>Cuadernillos 2026</h1>
-    <p>Descargá los materiales para cada año del ciclo lectivo</p>
+    <p>Descargá los materiales para cada año del ciclo lectivo.</p>
 </div>
 
+<!-- DESCARGAS -->
 <section id="descargas">
     <h2>Material de Descarga</h2>
-    <p class="sub-titulo">Hacé clic en la materia para acceder al PDF o carpeta de Drive correspondiente.</p>
+    <p class="subtitulo">Hacé clic en la materia para acceder al PDF o carpeta de Drive correspondiente.</p>
 
     <div class="año-titulo" id="primer-año">✦ Primer Año</div>
     <div class="descargas-grid">
@@ -236,20 +95,34 @@
     </div>
 </section>
 
-<details class="flotante">
-    <summary>Contactanos</summary>
-    <div class="flotante-menu">
-        <a href="https://maps.app.goo.gl/RPCFAWXXe3CbjE9D6" target="_blank">Ubicación</a>
-        <a href="https://www.instagram.com/eest.n3?igsh=NjV2aHNlN3ZmY2d3" target="_blank">Instagram</a>
-        <a href="mailto:eest3hurlingham@abc.gob.ar" target="_blank">Gmail</a>
-        <a href="https://www.tecnica3hurlingham.com/" target="_blank">Facebook</a>
-    </div>
-</details>
-
+<!-- FOOTER -->
 <footer>
-    <p>José de Andonaegui 2295, Hurlingham</p>
-  
+    <p class="footer-titulo">E.E.S.T N°3 Víctor Mercante</p>
+    <p class="footer-sub">Orientación Técnico Personal y Profesional en Informática</p>
+    <p class="footer-dir">José de Andonaegui 2295 / Torello 3054 — B1686 Hurlingham, Buenos Aires</p>
+    <div class="footer-social">
+        <a href="https://www.instagram.com/eest.n3?igsh=NjV2aHNlN3ZmY2d3" target="_blank" class="si-instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://youtube.com/@eest.n3hurlingham" target="_blank" class="si-youtube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="mailto:eest3hurlingham@abc.gob.ar" class="si-email" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://maps.google.com/maps?q=-34.5966466,-58.6559494" target="_blank" class="si-maps" title="Ubicación"><i class="fa-solid fa-location-dot"></i></a>
+    </div>
+    <details>
+        <summary class="btn-preguntas">Enviar consulta</summary>
+        <div class="form-preguntas">
+            <form action="https://formspree.io/f/mdapqjdw" method="POST">
+                <label>Nombre:</label>
+                <input type="text" name="nombre" required>
+                <label>Email:</label>
+                <input type="email" name="email" required>
+                <label>Mensaje:</label>
+                <textarea name="mensaje"></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </details>
+    <p class="footer-copy">© 2026 E.E.S.T N°3 Víctor Mercante — Hurlingham</p>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
