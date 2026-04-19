@@ -44,6 +44,11 @@ nav .logo img {
     object-fit: cover;
 }
 
+.nav-logo-icon {
+    font-size: 28px;
+    color: #5d6fbf;
+}
+
 nav ul {
     list-style: none;
     display: flex;
@@ -120,7 +125,7 @@ nav details ul li a:hover {
 /* ── HERO ── */
 .hero {
     background: linear-gradient(160deg, rgba(15, 45, 100, 0.78), rgba(40, 110, 175, 0.68)),
-        url("https://www.tecnica3hurlingham.com/wp-content/uploads/2026/02/Gemini_Generated_Image_mitnnmitnnmitnnm.png");
+        url("logot3.png");
     background-size: cover;
     background-position: center;
     padding: 140px 20px;
@@ -719,25 +724,23 @@ footer p {
     opacity: 0.65;
 }
 
-/* ── FORMULARIO EN FOOTER ── */
-footer details {
+/* ── FORMULARIO EN CONTACTO ── */
+.contact-box details {
     width: fit-content;
-    margin: 20px auto 0;
 }
 
 .btn-preguntas {
-    background: rgba(255, 255, 255, 0.18);
+    background: #5492b3;
     color: white;
-    padding: 11px 26px;
-    border-radius: 30px;
-    font-weight: bold;
+    padding: 9px 20px;
+    border-radius: 25px;
+    font-weight: 600;
     cursor: pointer;
     list-style: none;
-    border: 2px solid rgba(255, 255, 255, 0.35);
+    border: none;
     font-size: 14px;
     font-family: 'Poppins', sans-serif;
     transition: background 0.3s;
-    margin-top: 20px;
 }
 
 .btn-preguntas::-webkit-details-marker {
@@ -745,7 +748,7 @@ footer details {
 }
 
 .btn-preguntas:hover {
-    background: rgba(255, 255, 255, 0.28);
+    background: #3d7a9e;
 }
 
 .form-preguntas {
