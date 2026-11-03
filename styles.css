@@ -224,6 +224,212 @@ h2 {
     margin: 0;
 }
 
+#avisos {
+    padding: clamp(1.25rem, 4vw, 3rem);
+    scroll-margin-top: 6rem;
+    background: linear-gradient(145deg, #193568, #285f95);
+    color: white;
+}
+
+.avisos-encabezado {
+    text-align: center;
+}
+
+.avisos-encabezado p {
+    margin: 0 0 0.35rem;
+    color: #c8e6fa;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.avisos-encabezado h2 {
+    margin: 0 0 1.25rem;
+    color: inherit;
+    text-align: center;
+}
+
+.avisos-paneles {
+    display: grid;
+    gap: 1rem;
+}
+
+.avisos-paneles[data-carrusel] > .aviso {
+    grid-area: 1 / 1;
+}
+
+.aviso {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1rem, 4vw, 2.5rem);
+    padding: clamp(1rem, 4vw, 2.5rem);
+    border-radius: 18px;
+    background: white;
+    color: #25354a;
+}
+
+.aviso h3 {
+    margin: 0;
+    color: #193568;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    line-height: 1.2;
+}
+
+.aviso ul {
+    padding-inline-start: 1.2rem;
+}
+
+.aviso-intro {
+    max-width: 42ch;
+    margin: 0.8rem 0 1.25rem;
+}
+
+.aviso-datos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+    margin: 0;
+}
+
+.aviso-datos > div {
+    padding: 0.65rem 0.85rem;
+    border-left: 3px solid #5492b3;
+    border-radius: 0 10px 10px 0;
+    background: #edf5fb;
+}
+
+.aviso-datos .aviso-sede {
+    grid-column: 1 / -1;
+}
+
+.aviso-datos dt {
+    color: #285f95;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.aviso-datos dd {
+    margin: 0;
+    font-weight: 600;
+}
+
+.aviso-placa {
+    position: relative;
+    width: min(100%, 21rem);
+    margin: auto;
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 8 / 7;
+}
+
+.aviso-placa img {
+    position: absolute;
+    max-width: none;
+}
+
+.aviso-placa--expo img {
+    width: 156.52%;
+    left: -21.5%;
+    top: -72%;
+}
+
+.aviso-placa--inscripcion img {
+    width: 119.86%;
+    left: -8.44%;
+    top: -55.5%;
+}
+
+.aviso-logo {
+    display: grid;
+    place-items: center;
+    width: min(100%, 21rem);
+    aspect-ratio: 8 / 7;
+    margin: auto;
+    border-radius: 16px;
+    background: radial-gradient(circle, #f6fbff, #d7e9f8);
+}
+
+.aviso-logo img {
+    width: 65%;
+    height: auto;
+    border-radius: 50%;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .aviso {
+        transition: box-shadow 180ms ease;
+    }
+
+    .aviso:hover {
+        box-shadow: 0 8px 24px rgb(10 29 63 / 28%);
+    }
+
+    .aviso img {
+        transition: transform 180ms ease;
+    }
+
+    .aviso:hover img {
+        transform: scale(1.035);
+    }
+}
+
+.avisos-controles {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.avisos-controles button {
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #b2d1e8;
+    border-radius: 8px;
+    background: white;
+    color: #193568;
+    font: inherit;
+    cursor: pointer;
+}
+
+.avisos-estado {
+    text-align: center;
+}
+
+.avisos-centro {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.avisos-estado-titulo {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+}
+
+.avisos-paneles[data-carrusel] > .aviso[hidden] {
+    display: grid;
+    visibility: hidden;
+}
+
+.avisos-controles[hidden] {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .aviso {
+        grid-template-columns: 1fr;
+    }
+
+}
+
 /* ── TABLA ÁREAS ── */
 .tabla-areas {
     width: 100%;
