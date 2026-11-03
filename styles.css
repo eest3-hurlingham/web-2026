@@ -593,11 +593,38 @@ h2 {
 
 .carrusel-inner {
     display: flex;
-    animation: slide 20s infinite linear;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.carrusel-inner:hover {
-    animation-play-state: paused;
+.carrusel-item[aria-hidden="true"] {
+    display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .carrusel-inner--animado {
+        width: var(--ancho-carrusel-equipo, 200%);
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        animation: desplazar-equipo 20s linear infinite;
+    }
+
+    .carrusel-inner--animado:hover {
+        animation-play-state: paused;
+    }
+
+    .carrusel-inner--animado > .carrusel-item {
+        flex: 0 0 12.5%;
+        min-width: 0;
+    }
+
+    .carrusel-inner--animado > .carrusel-item[aria-hidden="true"] {
+        display: block;
+    }
+
+    @keyframes desplazar-equipo {
+        to { transform: translateX(-50%); }
+    }
 }
 
 .carrusel-item {
@@ -606,12 +633,26 @@ h2 {
     padding: 16px;
 }
 
-.carrusel-item img {
+.carrusel-item img,
+.equipo-iniciales {
     width: 170px;
     height: 170px;
-    object-fit: cover;
     border-radius: 50%;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+.carrusel-item img {
+    object-fit: cover;
+}
+
+.equipo-iniciales {
+    display: inline-grid;
+    place-items: center;
+    vertical-align: baseline;
+    background: #edf5fb;
+    color: #193568;
+    font-size: 2.5rem;
+    font-weight: 600;
 }
 
 .carrusel-item h3 {
@@ -624,11 +665,6 @@ h2 {
     color: #777;
     font-size: 13px;
     margin: 0;
-}
-
-@keyframes slide {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
 }
 
 /* ── CONTACTO ── */
@@ -1175,11 +1211,16 @@ nav.nav-open .hamburger span:nth-child(3) {
         grid-template-columns: 1fr;
     }
 
+    .carrusel-inner {
+        --ancho-carrusel-equipo: 400%;
+    }
+
     .carrusel-item {
         min-width: 50%;
     }
 
-    .carrusel-item img {
+    .carrusel-item img,
+    .equipo-iniciales {
         width: 130px;
         height: 130px;
     }
@@ -1234,6 +1275,10 @@ nav.nav-open .hamburger span:nth-child(3) {
 
     .hero h1 {
         font-size: 22px;
+    }
+
+    .carrusel-inner {
+        --ancho-carrusel-equipo: 800%;
     }
 
     .carrusel-item {

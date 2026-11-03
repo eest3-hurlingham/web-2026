@@ -16,6 +16,18 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+    const equipo = document.querySelector('#integracion .carrusel-inner');
+    if (!equipo) return;
+
+    [...equipo.children].forEach((ficha) => {
+        const copia = ficha.cloneNode(true);
+        copia.setAttribute('aria-hidden', 'true');
+        equipo.append(copia);
+    });
+    equipo.classList.add('carrusel-inner--animado');
+});
+
+document.addEventListener('DOMContentLoaded', function () {
     const avisos = document.querySelector('#avisos');
     if (!avisos) return;
 
