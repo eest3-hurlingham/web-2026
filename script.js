@@ -2,15 +2,35 @@ document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('nav');
 
-    if (!hamburger) return;
+    if (!hamburger || !nav) return;
 
     hamburger.addEventListener('click', function () {
         nav.classList.toggle('nav-open');
     });
 
     document.addEventListener('click', function (e) {
+        nav.querySelectorAll('details[open]').forEach((menu) => {
+            if (!menu.contains(e.target)) menu.open = false;
+        });
+
         if (!nav.contains(e.target)) {
             nav.classList.remove('nav-open');
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape' || e.defaultPrevented) return;
+
+        const abiertos = [...nav.querySelectorAll('details[open]')];
+        if (abiertos.length) {
+            const menu = abiertos.find((item) => item.contains(document.activeElement)) ?? abiertos[0];
+            abiertos.forEach((item) => { item.open = false; });
+            menu.querySelector('summary').focus();
+            e.preventDefault();
+        } else if (nav.classList.contains('nav-open')) {
+            nav.classList.remove('nav-open');
+            hamburger.focus();
+            e.preventDefault();
         }
     });
 });
@@ -25,6 +45,35 @@ document.addEventListener('DOMContentLoaded', function () {
         equipo.append(copia);
     });
     equipo.classList.add('carrusel-inner--animado');
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.galeria-album').forEach((album) => {
+        const destacada = album.querySelector('.galeria-destacada');
+        const enlace = destacada.querySelector('a');
+        const imagen = destacada.querySelector('img');
+        const indicador = destacada.querySelector('figcaption');
+        const miniaturas = [...album.querySelectorAll('.galeria-fotos a')];
+        let seleccionada = miniaturas[0];
+
+        seleccionada.setAttribute('aria-current', 'true');
+        indicador.textContent = `Foto 1 de ${miniaturas.length}`;
+        miniaturas.forEach((miniatura, indice) => {
+            miniatura.setAttribute('aria-label', `Ver foto ${indice + 1} en grande`);
+            miniatura.addEventListener('click', (evento) => {
+                if (evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.altKey) return;
+                evento.preventDefault();
+                seleccionada.removeAttribute('aria-current');
+                seleccionada = miniatura;
+                seleccionada.setAttribute('aria-current', 'true');
+                enlace.href = miniatura.href;
+                imagen.src = miniatura.href;
+                indicador.textContent = `Foto ${indice + 1} de ${miniaturas.length}`;
+                enlace.focus({ preventScroll: true });
+                destacada.scrollIntoView({ block: 'nearest' });
+            });
+        });
+    });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
