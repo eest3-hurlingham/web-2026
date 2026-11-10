@@ -1529,3 +1529,39 @@ nav.nav-open .hamburger span:nth-child(3) {
         box-shadow: 0 6px 18px rgba(25, 53, 104, 0.18);
     }
 }
+
+/* Ilustración tecnológica de la portada. */
+.hero--ilustrada {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+    align-items: center;
+    gap: clamp(24px, 5vw, 80px);
+    padding: clamp(48px, 7vw, 100px) max(24px, calc((100vw - 1100px) / 2));
+    background: radial-gradient(ellipse at 85% 35%, #286886 0%, transparent 60%), #142f56;
+    text-align: left;
+    overflow: hidden;
+}
+.hero--ilustrada h1 { font-size: clamp(30px, 4vw, 52px); line-height: 1.18; }
+.hero--ilustrada p { max-width: 35em; line-height: 1.7; }
+.hero-tecnologia { width: 100%; max-width: 520px; justify-self: center; }
+.hero-tecnologia svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+@media (prefers-reduced-motion: no-preference) {
+    .tech-monitor { transform-origin: 260px 375px; animation: tech-aparecer 900ms cubic-bezier(.22,1,.36,1) both; }
+    .tech-circuitos path { stroke-dasharray: 1; animation: tech-trazar 1500ms ease 600ms both; }
+    .tech-nodos { animation: tech-encender 900ms ease 1500ms both; }
+    .tech-codigo path { stroke-dasharray: 1; animation: tech-trazar 800ms ease 1300ms both; }
+    .tech-codigo path:nth-child(2) { animation-delay: 1500ms; }
+    .tech-codigo path:nth-child(3) { animation-delay: 1700ms; }
+    .tech-codigo path:nth-child(4) { animation-delay: 2000ms; }
+    .tech-codigo path:nth-child(5) { animation-delay: 2200ms; }
+    .tech-chip { transform-origin: 310px 205px; animation: tech-pulso 1600ms ease 2400ms both; }
+    @keyframes tech-aparecer { from { opacity: 0; transform: translateY(24px) scale(.9); } to { opacity: 1; transform: none; } }
+    @keyframes tech-trazar { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+    @keyframes tech-encender { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes tech-pulso { 0% { opacity: .45; transform: scale(.9); } 45% { opacity: 1; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
+}
+@media (max-width: 768px) {
+    .hero--ilustrada { grid-template-columns: 1fr; text-align: center; padding: 48px 24px 32px; gap: 16px; }
+    .hero-tecnologia { max-width: 350px; }
+}
