@@ -1490,3 +1490,42 @@ nav.nav-open .hamburger span:nth-child(3) {
         font-size: 18px;
     }
 }
+
+/* Detalles de interacción de la portada. */
+@media (prefers-reduced-motion: no-preference) {
+    .portada-animada .historia img,
+    .portada-animada .carrusel-item img,
+    .portada-animada .equipo-iniciales,
+    .portada-animada .avisos-controles button,
+    .portada-animada .contact-links > a,
+    .portada-animada .btn-preguntas {
+        transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+    }
+
+    .portada-animada .avisos-controles button:focus-visible,
+    .portada-animada .contact-links > a:focus-visible,
+    .portada-animada .btn-preguntas:focus-visible {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(25, 53, 104, 0.18);
+    }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .portada-animada .historia img:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(25, 53, 104, 0.18);
+    }
+
+    .portada-animada .carrusel-item:hover img,
+    .portada-animada .carrusel-item:hover .equipo-iniciales {
+        transform: scale(1.04);
+        box-shadow: 0 9px 24px rgba(25, 53, 104, 0.2);
+    }
+
+    .portada-animada .avisos-controles button:hover,
+    .portada-animada .contact-links > a:hover,
+    .portada-animada .btn-preguntas:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(25, 53, 104, 0.18);
+    }
+}

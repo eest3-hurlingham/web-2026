@@ -131,3 +131,49 @@ document.addEventListener('DOMContentLoaded', function () {
     controles.hidden = false;
     actualizarAvance();
 });
+
+/* Entradas progresivas de la portada. El contenido siempre parte visible. */
+document.addEventListener('DOMContentLoaded', function () {
+    if (!document.body.classList.contains('portada-animada') ||
+        !('IntersectionObserver' in window) || !Element.prototype.animate) return;
+
+    const reducirMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const animaciones = new Set();
+    const observador = new IntersectionObserver((entradas) => {
+        entradas.forEach((entrada) => {
+            if (!entrada.isIntersecting) return;
+            observador.unobserve(entrada.target);
+            if (reducirMovimiento.matches) return;
+
+            const animacion = entrada.target.animate([
+                { opacity: 0, translate: '0 18px' },
+                { opacity: 1, translate: '0 0' }
+            ], {
+                duration: 650,
+                delay: Number(entrada.target.dataset.demoraEntrada || 0),
+                easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+                fill: 'backwards'
+            });
+            animaciones.add(animacion);
+            animacion.finished.catch(() => {}).finally(() => animaciones.delete(animacion));
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(
+        '.hero h1, .hero p, section > h2, .avisos-encabezado, ' +
+        '.service-card, .historia img, .carrusel-item, .contact-box'
+    ).forEach((elemento) => observador.observe(elemento));
+
+    document.querySelectorAll('.historia, .carrusel-inner').forEach((grupo) => {
+        [...grupo.children].forEach((elemento, indice) => {
+            elemento.dataset.demoraEntrada = (indice % 4) * 90;
+        });
+    });
+    document.querySelector('.hero p').dataset.demoraEntrada = 160;
+
+    reducirMovimiento.addEventListener('change', () => {
+        if (!reducirMovimiento.matches) return;
+        animaciones.forEach((animacion) => animacion.cancel());
+        animaciones.clear();
+    });
+});
