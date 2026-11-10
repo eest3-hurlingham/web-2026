@@ -335,11 +335,11 @@ h2 {
     top: -72%;
 }
 
-.aviso-placa--inscripcion {
+.aviso-placa--completa {
     aspect-ratio: auto;
 }
 
-.aviso-placa--inscripcion img {
+.aviso-placa--completa img {
     position: static;
     display: block;
     width: 100%;
