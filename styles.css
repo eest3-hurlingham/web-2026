@@ -1586,3 +1586,67 @@ nav.nav-open .hamburger span:nth-child(3) {
     .hero--ilustrada { grid-template-columns: 1fr; text-align: center; padding: 48px 24px 32px; gap: 16px; }
     .hero-tecnologia { max-width: 350px; }
 }
+
+/* Plan de estudios abierto, adaptable por año. */
+.curricula-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 28px;
+    align-items: start;
+}
+.curricula-ano {
+    min-width: 0;
+    border: 1px solid #dbe7ef;
+    border-radius: 18px;
+    background: #fff;
+    overflow: clip;
+}
+.curricula-cabecera {
+    padding: 22px 24px;
+    background: #193568;
+    color: #fff;
+}
+.curricula-cabecera h3 { margin: 0 0 6px; font-size: 26px; }
+.curricula-cabecera p { margin: 0; font-size: 13px; line-height: 1.6; }
+.curricula-materias {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.curricula-materias th, .curricula-materias td {
+    padding: 11px 16px;
+    border-bottom: 1px solid #e9eff4;
+    overflow-wrap: anywhere;
+}
+.curricula-materias thead { color: #43617c; background: #f7fafc; font-size: 12px; }
+.curricula-materias thead th:last-child { width: 66px; text-align: right; }
+.curricula-materias td { text-align: right; color: #193568; font-variant-numeric: tabular-nums; }
+.curricula-materias th[scope="row"] { font-weight: 400; }
+.curricula-materias .curricula-grupo th {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    background: #e8f2f9;
+    color: #285b80;
+    font-size: 11px;
+    letter-spacing: .025em;
+    font-weight: 700;
+}
+.curricula-materias tbody:last-child tr:last-child > * { border-bottom: 0; }
+.curricula-lector {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+@media (max-width: 700px) {
+    .curricula-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .curricula-cabecera { padding: 20px 18px; }
+    .curricula-materias th, .curricula-materias td { padding-left: 12px; padding-right: 12px; }
+}

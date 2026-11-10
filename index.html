@@ -227,49 +227,128 @@
 <section id="beneficios">
     <h2>Estructura Curricular</h2>
     <p class="subtitulo">La tecnicatura se estructura en 3 niveles formativos: Formación General, Formación Científico Tecnológica y Formación Técnico Específica.</p>
-    <div class="tabla-curricular-wrap">
-        <table class="tabla-curricular">
-            <thead>
-                <tr>
-                    <th colspan="2">CUARTO AÑO</th>
-                    <th colspan="2">QUINTO AÑO</th>
-                    <th colspan="2">SEXTO AÑO</th>
-                    <th colspan="2">SÉPTIMO AÑO</th>
-                </tr>
-                <tr>
-                    <th>Materia</th><th>CHT</th>
-                    <th>Materia</th><th>CHT</th>
-                    <th>Materia</th><th>CHT</th>
-                    <th>Materia</th><th>CHT</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="seccion-row"><td colspan="8">FORMACIÓN GENERAL</td></tr>
-                <tr><td>Literatura</td><td>72</td><td>Literatura</td><td>72</td><td>Literatura</td><td>72</td><td>Prácticas Profesionalizantes</td><td>200</td></tr>
-                <tr><td>Inglés</td><td>72</td><td>Inglés</td><td>72</td><td>Inglés</td><td>72</td><td></td><td></td></tr>
-                <tr><td>Educación Física</td><td>72</td><td>Educación Física</td><td>72</td><td>Educación Física</td><td>72</td><td></td><td></td></tr>
-                <tr><td>Salud y Adolescencia</td><td>72</td><td>Política y Ciudadanía</td><td>72</td><td>Filosofía</td><td>72</td><td></td><td></td></tr>
-                <tr><td>Historia</td><td>72</td><td>Historia</td><td>72</td><td>Arte</td><td>72</td><td></td><td></td></tr>
-                <tr><td>Geografía</td><td>72</td><td>Geografía</td><td>72</td><td></td><td></td><td></td><td></td></tr>
-                <tr class="seccion-row"><td colspan="8">FORMACIÓN CIENTÍFICO TECNOLÓGICA</td></tr>
-                <tr><td>Matemática Ciclo Superior</td><td>144</td><td>Análisis Matemático</td><td>144</td><td>Matemática Aplicada</td><td>72</td><td>Emprendimientos Productivos</td><td>72</td></tr>
-                <tr><td>Física</td><td>108</td><td>Sistemas Digitales</td><td>108</td><td>Sistemas Digitales</td><td>108</td><td>Evaluación de Proyectos</td><td>72</td></tr>
-                <tr><td>Química</td><td>72</td><td>Teleinformática</td><td>144</td><td>Investigación Operativa</td><td>144</td><td>Modelos y Sistemas</td><td>72</td></tr>
-                <tr class="seccion-row"><td colspan="8">FORMACIÓN TÉCNICO ESPECÍFICA</td></tr>
-                <tr><td>Lab. de Programación</td><td>72</td><td>Lab. de Programación</td><td>72</td><td>Lab. de Programación</td><td>72</td><td>Proyecto, Diseño e Implementación</td><td>144</td></tr>
-                <tr><td>Lab. de Hardware</td><td>144</td><td>Lab. de Hardware</td><td>144</td><td>Lab. de Hardware</td><td>144</td><td>Instalación, Mantenimiento y Reparación</td><td>144</td></tr>
-                <tr><td>Lab. de Sistemas Operativos</td><td>144</td><td>Lab. de Sistemas Operativos</td><td>144</td><td>Lab. de Sistemas Operativos</td><td>144</td><td>Instalación, Mantenimiento y Reparación de Redes</td><td>144</td></tr>
-                <tr><td>Lab. de Aplicaciones</td><td>72</td><td>Lab. de Aplicaciones</td><td>72</td><td>Lab. de Aplicaciones</td><td>72</td><td></td><td></td></tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2">Total hs. semanal: <strong>35</strong></td>
-                    <td colspan="2">Total hs. semanal: <strong>35</strong></td>
-                    <td colspan="2">Total hs. semanal: <strong>35</strong></td>
-                    <td colspan="2">Total hs. semanal (sin PP): <strong>21</strong></td>
-                </tr>
-            </tfoot>
-        </table>
+    <div class="curricula-grid">
+        <article class="curricula-ano" aria-labelledby="curricula-4">
+            <header class="curricula-cabecera">
+                <h3 id="curricula-4">4.º año</h3>
+                <p><strong>35 horas semanales</strong></p>
+            </header>
+            <table class="curricula-materias">
+                <caption class="curricula-lector">Materias y carga horaria de 4.º año</caption>
+                <thead><tr><th scope="col">Materia</th><th scope="col">CHT</th></tr></thead>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN GENERAL</th></tr>
+                    <tr><th scope="row">Literatura</th><td>72</td></tr>
+                    <tr><th scope="row">Inglés</th><td>72</td></tr>
+                    <tr><th scope="row">Educación Física</th><td>72</td></tr>
+                    <tr><th scope="row">Salud y Adolescencia</th><td>72</td></tr>
+                    <tr><th scope="row">Historia</th><td>72</td></tr>
+                    <tr><th scope="row">Geografía</th><td>72</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN CIENTÍFICO TECNOLÓGICA</th></tr>
+                    <tr><th scope="row">Matemática Ciclo Superior</th><td>144</td></tr>
+                    <tr><th scope="row">Física</th><td>108</td></tr>
+                    <tr><th scope="row">Química</th><td>72</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN TÉCNICO ESPECÍFICA</th></tr>
+                    <tr><th scope="row">Lab. de Programación</th><td>72</td></tr>
+                    <tr><th scope="row">Lab. de Hardware</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Sistemas Operativos</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Aplicaciones</th><td>72</td></tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="curricula-ano" aria-labelledby="curricula-5">
+            <header class="curricula-cabecera">
+                <h3 id="curricula-5">5.º año</h3>
+                <p><strong>35 horas semanales</strong></p>
+            </header>
+            <table class="curricula-materias">
+                <caption class="curricula-lector">Materias y carga horaria de 5.º año</caption>
+                <thead><tr><th scope="col">Materia</th><th scope="col">CHT</th></tr></thead>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN GENERAL</th></tr>
+                    <tr><th scope="row">Literatura</th><td>72</td></tr>
+                    <tr><th scope="row">Inglés</th><td>72</td></tr>
+                    <tr><th scope="row">Educación Física</th><td>72</td></tr>
+                    <tr><th scope="row">Política y Ciudadanía</th><td>72</td></tr>
+                    <tr><th scope="row">Historia</th><td>72</td></tr>
+                    <tr><th scope="row">Geografía</th><td>72</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN CIENTÍFICO TECNOLÓGICA</th></tr>
+                    <tr><th scope="row">Análisis Matemático</th><td>144</td></tr>
+                    <tr><th scope="row">Sistemas Digitales</th><td>108</td></tr>
+                    <tr><th scope="row">Teleinformática</th><td>144</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN TÉCNICO ESPECÍFICA</th></tr>
+                    <tr><th scope="row">Lab. de Programación</th><td>72</td></tr>
+                    <tr><th scope="row">Lab. de Hardware</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Sistemas Operativos</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Aplicaciones</th><td>72</td></tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="curricula-ano" aria-labelledby="curricula-6">
+            <header class="curricula-cabecera">
+                <h3 id="curricula-6">6.º año</h3>
+                <p><strong>35 horas semanales</strong></p>
+            </header>
+            <table class="curricula-materias">
+                <caption class="curricula-lector">Materias y carga horaria de 6.º año</caption>
+                <thead><tr><th scope="col">Materia</th><th scope="col">CHT</th></tr></thead>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN GENERAL</th></tr>
+                    <tr><th scope="row">Literatura</th><td>72</td></tr>
+                    <tr><th scope="row">Inglés</th><td>72</td></tr>
+                    <tr><th scope="row">Educación Física</th><td>72</td></tr>
+                    <tr><th scope="row">Filosofía</th><td>72</td></tr>
+                    <tr><th scope="row">Arte</th><td>72</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN CIENTÍFICO TECNOLÓGICA</th></tr>
+                    <tr><th scope="row">Matemática Aplicada</th><td>72</td></tr>
+                    <tr><th scope="row">Sistemas Digitales</th><td>108</td></tr>
+                    <tr><th scope="row">Investigación Operativa</th><td>144</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN TÉCNICO ESPECÍFICA</th></tr>
+                    <tr><th scope="row">Lab. de Programación</th><td>72</td></tr>
+                    <tr><th scope="row">Lab. de Hardware</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Sistemas Operativos</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Aplicaciones</th><td>72</td></tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="curricula-ano" aria-labelledby="curricula-7">
+            <header class="curricula-cabecera">
+                <h3 id="curricula-7">7.º año</h3>
+                <p><strong>21 horas semanales</strong> · sin Prácticas Profesionalizantes</p>
+            </header>
+            <table class="curricula-materias">
+                <caption class="curricula-lector">Materias y carga horaria de 7.º año</caption>
+                <thead><tr><th scope="col">Materia</th><th scope="col">CHT</th></tr></thead>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN GENERAL</th></tr>
+                    <tr><th scope="row">Prácticas Profesionalizantes</th><td>200</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN CIENTÍFICO TECNOLÓGICA</th></tr>
+                    <tr><th scope="row">Emprendimientos Productivos</th><td>72</td></tr>
+                    <tr><th scope="row">Evaluación de Proyectos</th><td>72</td></tr>
+                    <tr><th scope="row">Modelos y Sistemas</th><td>72</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN TÉCNICO ESPECÍFICA</th></tr>
+                    <tr><th scope="row">Proyecto, Diseño e Implementación</th><td>144</td></tr>
+                    <tr><th scope="row">Instalación, Mantenimiento y Reparación</th><td>144</td></tr>
+                    <tr><th scope="row">Instalación, Mantenimiento y Reparación de Redes</th><td>144</td></tr>
+                </tbody>
+            </table>
+        </article>
     </div>
 </section>
 
