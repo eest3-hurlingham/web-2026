@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E.E.S.T N°3 Víctor Mercante — Hurlingham</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" sizes="128x128" href="favicon.png">
 </head>
-<body id="inicio">
+<body id="inicio" class="portada-animada">
 
 <!-- BOTÓN FLOTANTE -->
 <details class="flotante">
@@ -70,9 +71,57 @@
 </nav>
 
 <!-- HERO -->
-<div class="hero">
+<div class="hero hero--ilustrada">
+    <div class="hero-contenido">
     <h1>E.E.S.T N°3 Víctor Mercante</h1>
     <p>"No solo solucionamos problemas, creamos el futuro digital."</p>
+    </div>
+    <div class="hero-tecnologia" aria-hidden="true">
+        <svg viewBox="0 0 520 430" focusable="false" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="pantalla-tech" x2="1" y2="1">
+                    <stop stop-color="#163f69"/><stop offset="1" stop-color="#081d37"/>
+                </linearGradient>
+            </defs>
+            <ellipse cx="260" cy="389" rx="154" ry="12" fill="#05172d" opacity=".25"/>
+            <g class="tech-circuitos" fill="none" stroke="#75d5df" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                <path pathLength="1" d="M90 220H46V138H20"/>
+                <path pathLength="1" d="M430 220H474V138H500"/>
+                <path pathLength="1" d="M175 100V65H112V30"/>
+                <path pathLength="1" d="M345 100V65H408V30"/>
+                <path pathLength="1" d="M130 318V355H75V382"/>
+                <path pathLength="1" d="M390 318V355H445V382"/>
+            </g>
+            <g class="tech-nodos" fill="#b4f3e1" stroke="#143a60" stroke-width="5">
+                <circle cx="20" cy="138" r="9"/><circle cx="500" cy="138" r="9"/>
+                <circle cx="112" cy="30" r="9"/><circle cx="408" cy="30" r="9"/>
+                <circle cx="75" cy="382" r="9"/><circle cx="445" cy="382" r="9"/>
+            </g>
+            <g class="tech-monitor">
+                <path d="M235 313H285L296 364H224Z" fill="#7dafca"/>
+                <rect x="195" y="362" width="130" height="14" rx="7" fill="#d9f2fa"/>
+                <rect x="86" y="96" width="348" height="230" rx="24" fill="#d9f2fa"/>
+                <rect x="99" y="109" width="322" height="188" rx="13" fill="url(#pantalla-tech)"/>
+                <circle cx="260" cy="312" r="5" fill="#5492b3"/>
+                <g fill="#67cdd7"><circle cx="117" cy="125" r="3"/><circle cx="129" cy="125" r="3"/><circle cx="141" cy="125" r="3"/></g>
+                <g class="tech-codigo" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="7">
+                    <path pathLength="1" d="M161 159L139 182L161 205" stroke="#a1e8ce"/>
+                    <path pathLength="1" d="M194 156L177 209" stroke="#f4c875"/>
+                    <path pathLength="1" d="M210 159L232 182L210 205" stroke="#a1e8ce"/>
+                    <path pathLength="1" d="M141 237H225" stroke="#74c8ed"/>
+                    <path pathLength="1" d="M141 255H195" stroke="#74c8ed"/>
+                </g>
+                <g class="tech-chip">
+                    <g stroke="#73d4db" stroke-width="4">
+                        <path d="M292 170V155M310 170V155M328 170V155M292 240V255M310 240V255M328 240V255M275 188H260M275 207H260M275 225H260M345 188H360M345 207H360M345 225H360"/>
+                    </g>
+                    <rect x="275" y="170" width="70" height="70" rx="11" fill="#287b97" stroke="#a1e8ce" stroke-width="3"/>
+                    <rect x="290" y="185" width="40" height="40" rx="6" fill="#a1e8ce"/>
+                    <path d="M301 205H319M310 196V214" stroke="#287b97" stroke-width="3"/>
+                </g>
+            </g>
+        </svg>
+    </div>
 </div>
 
 <section id="avisos" aria-labelledby="avisos-titulo">
@@ -178,49 +227,128 @@
 <section id="beneficios">
     <h2>Estructura Curricular</h2>
     <p class="subtitulo">La tecnicatura se estructura en 3 niveles formativos: Formación General, Formación Científico Tecnológica y Formación Técnico Específica.</p>
-    <div class="tabla-curricular-wrap">
-        <table class="tabla-curricular">
-            <thead>
-                <tr>
-                    <th colspan="2">CUARTO AÑO</th>
-                    <th colspan="2">QUINTO AÑO</th>
-                    <th colspan="2">SEXTO AÑO</th>
-                    <th colspan="2">SÉPTIMO AÑO</th>
-                </tr>
-                <tr>
-                    <th>Materia</th><th>CHT</th>
-                    <th>Materia</th><th>CHT</th>
-                    <th>Materia</th><th>CHT</th>
-                    <th>Materia</th><th>CHT</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="seccion-row"><td colspan="8">FORMACIÓN GENERAL</td></tr>
-                <tr><td>Literatura</td><td>72</td><td>Literatura</td><td>72</td><td>Literatura</td><td>72</td><td>Prácticas Profesionalizantes</td><td>200</td></tr>
-                <tr><td>Inglés</td><td>72</td><td>Inglés</td><td>72</td><td>Inglés</td><td>72</td><td></td><td></td></tr>
-                <tr><td>Educación Física</td><td>72</td><td>Educación Física</td><td>72</td><td>Educación Física</td><td>72</td><td></td><td></td></tr>
-                <tr><td>Salud y Adolescencia</td><td>72</td><td>Política y Ciudadanía</td><td>72</td><td>Filosofía</td><td>72</td><td></td><td></td></tr>
-                <tr><td>Historia</td><td>72</td><td>Historia</td><td>72</td><td>Arte</td><td>72</td><td></td><td></td></tr>
-                <tr><td>Geografía</td><td>72</td><td>Geografía</td><td>72</td><td></td><td></td><td></td><td></td></tr>
-                <tr class="seccion-row"><td colspan="8">FORMACIÓN CIENTÍFICO TECNOLÓGICA</td></tr>
-                <tr><td>Matemática Ciclo Superior</td><td>144</td><td>Análisis Matemático</td><td>144</td><td>Matemática Aplicada</td><td>72</td><td>Emprendimientos Productivos</td><td>72</td></tr>
-                <tr><td>Física</td><td>108</td><td>Sistemas Digitales</td><td>108</td><td>Sistemas Digitales</td><td>108</td><td>Evaluación de Proyectos</td><td>72</td></tr>
-                <tr><td>Química</td><td>72</td><td>Teleinformática</td><td>144</td><td>Investigación Operativa</td><td>144</td><td>Modelos y Sistemas</td><td>72</td></tr>
-                <tr class="seccion-row"><td colspan="8">FORMACIÓN TÉCNICO ESPECÍFICA</td></tr>
-                <tr><td>Lab. de Programación</td><td>72</td><td>Lab. de Programación</td><td>72</td><td>Lab. de Programación</td><td>72</td><td>Proyecto, Diseño e Implementación</td><td>144</td></tr>
-                <tr><td>Lab. de Hardware</td><td>144</td><td>Lab. de Hardware</td><td>144</td><td>Lab. de Hardware</td><td>144</td><td>Instalación, Mantenimiento y Reparación</td><td>144</td></tr>
-                <tr><td>Lab. de Sistemas Operativos</td><td>144</td><td>Lab. de Sistemas Operativos</td><td>144</td><td>Lab. de Sistemas Operativos</td><td>144</td><td>Instalación, Mantenimiento y Reparación de Redes</td><td>144</td></tr>
-                <tr><td>Lab. de Aplicaciones</td><td>72</td><td>Lab. de Aplicaciones</td><td>72</td><td>Lab. de Aplicaciones</td><td>72</td><td></td><td></td></tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2">Total hs. semanal: <strong>35</strong></td>
-                    <td colspan="2">Total hs. semanal: <strong>35</strong></td>
-                    <td colspan="2">Total hs. semanal: <strong>35</strong></td>
-                    <td colspan="2">Total hs. semanal (sin PP): <strong>21</strong></td>
-                </tr>
-            </tfoot>
-        </table>
+    <div class="curricula-grid">
+        <article class="curricula-ano" aria-labelledby="curricula-4">
+            <header class="curricula-cabecera">
+                <h3 id="curricula-4">4.º año</h3>
+                <p><strong>35 horas semanales</strong></p>
+            </header>
+            <table class="curricula-materias">
+                <caption class="curricula-lector">Materias y carga horaria de 4.º año</caption>
+                <thead><tr><th scope="col">Materia</th><th scope="col">CHT</th></tr></thead>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN GENERAL</th></tr>
+                    <tr><th scope="row">Literatura</th><td>72</td></tr>
+                    <tr><th scope="row">Inglés</th><td>72</td></tr>
+                    <tr><th scope="row">Educación Física</th><td>72</td></tr>
+                    <tr><th scope="row">Salud y Adolescencia</th><td>72</td></tr>
+                    <tr><th scope="row">Historia</th><td>72</td></tr>
+                    <tr><th scope="row">Geografía</th><td>72</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN CIENTÍFICO TECNOLÓGICA</th></tr>
+                    <tr><th scope="row">Matemática Ciclo Superior</th><td>144</td></tr>
+                    <tr><th scope="row">Física</th><td>108</td></tr>
+                    <tr><th scope="row">Química</th><td>72</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN TÉCNICO ESPECÍFICA</th></tr>
+                    <tr><th scope="row">Lab. de Programación</th><td>72</td></tr>
+                    <tr><th scope="row">Lab. de Hardware</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Sistemas Operativos</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Aplicaciones</th><td>72</td></tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="curricula-ano" aria-labelledby="curricula-5">
+            <header class="curricula-cabecera">
+                <h3 id="curricula-5">5.º año</h3>
+                <p><strong>35 horas semanales</strong></p>
+            </header>
+            <table class="curricula-materias">
+                <caption class="curricula-lector">Materias y carga horaria de 5.º año</caption>
+                <thead><tr><th scope="col">Materia</th><th scope="col">CHT</th></tr></thead>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN GENERAL</th></tr>
+                    <tr><th scope="row">Literatura</th><td>72</td></tr>
+                    <tr><th scope="row">Inglés</th><td>72</td></tr>
+                    <tr><th scope="row">Educación Física</th><td>72</td></tr>
+                    <tr><th scope="row">Política y Ciudadanía</th><td>72</td></tr>
+                    <tr><th scope="row">Historia</th><td>72</td></tr>
+                    <tr><th scope="row">Geografía</th><td>72</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN CIENTÍFICO TECNOLÓGICA</th></tr>
+                    <tr><th scope="row">Análisis Matemático</th><td>144</td></tr>
+                    <tr><th scope="row">Sistemas Digitales</th><td>108</td></tr>
+                    <tr><th scope="row">Teleinformática</th><td>144</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN TÉCNICO ESPECÍFICA</th></tr>
+                    <tr><th scope="row">Lab. de Programación</th><td>72</td></tr>
+                    <tr><th scope="row">Lab. de Hardware</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Sistemas Operativos</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Aplicaciones</th><td>72</td></tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="curricula-ano" aria-labelledby="curricula-6">
+            <header class="curricula-cabecera">
+                <h3 id="curricula-6">6.º año</h3>
+                <p><strong>35 horas semanales</strong></p>
+            </header>
+            <table class="curricula-materias">
+                <caption class="curricula-lector">Materias y carga horaria de 6.º año</caption>
+                <thead><tr><th scope="col">Materia</th><th scope="col">CHT</th></tr></thead>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN GENERAL</th></tr>
+                    <tr><th scope="row">Literatura</th><td>72</td></tr>
+                    <tr><th scope="row">Inglés</th><td>72</td></tr>
+                    <tr><th scope="row">Educación Física</th><td>72</td></tr>
+                    <tr><th scope="row">Filosofía</th><td>72</td></tr>
+                    <tr><th scope="row">Arte</th><td>72</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN CIENTÍFICO TECNOLÓGICA</th></tr>
+                    <tr><th scope="row">Matemática Aplicada</th><td>72</td></tr>
+                    <tr><th scope="row">Sistemas Digitales</th><td>108</td></tr>
+                    <tr><th scope="row">Investigación Operativa</th><td>144</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN TÉCNICO ESPECÍFICA</th></tr>
+                    <tr><th scope="row">Lab. de Programación</th><td>72</td></tr>
+                    <tr><th scope="row">Lab. de Hardware</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Sistemas Operativos</th><td>144</td></tr>
+                    <tr><th scope="row">Lab. de Aplicaciones</th><td>72</td></tr>
+                </tbody>
+            </table>
+        </article>
+        <article class="curricula-ano" aria-labelledby="curricula-7">
+            <header class="curricula-cabecera">
+                <h3 id="curricula-7">7.º año</h3>
+                <p><strong>21 horas semanales</strong> · sin Prácticas Profesionalizantes</p>
+            </header>
+            <table class="curricula-materias">
+                <caption class="curricula-lector">Materias y carga horaria de 7.º año</caption>
+                <thead><tr><th scope="col">Materia</th><th scope="col">CHT</th></tr></thead>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN GENERAL</th></tr>
+                    <tr><th scope="row">Prácticas Profesionalizantes</th><td>200</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN CIENTÍFICO TECNOLÓGICA</th></tr>
+                    <tr><th scope="row">Emprendimientos Productivos</th><td>72</td></tr>
+                    <tr><th scope="row">Evaluación de Proyectos</th><td>72</td></tr>
+                    <tr><th scope="row">Modelos y Sistemas</th><td>72</td></tr>
+                </tbody>
+                <tbody>
+                    <tr class="curricula-grupo"><th colspan="2" scope="rowgroup">FORMACIÓN TÉCNICO ESPECÍFICA</th></tr>
+                    <tr><th scope="row">Proyecto, Diseño e Implementación</th><td>144</td></tr>
+                    <tr><th scope="row">Instalación, Mantenimiento y Reparación</th><td>144</td></tr>
+                    <tr><th scope="row">Instalación, Mantenimiento y Reparación de Redes</th><td>144</td></tr>
+                </tbody>
+            </table>
+        </article>
     </div>
 </section>
 
