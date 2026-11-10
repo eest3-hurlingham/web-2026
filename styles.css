@@ -1537,7 +1537,9 @@ nav.nav-open .hamburger span:nth-child(3) {
     align-items: center;
     gap: clamp(24px, 5vw, 80px);
     padding: clamp(48px, 7vw, 100px) max(24px, calc((100vw - 1100px) / 2));
-    background: radial-gradient(ellipse at 85% 35%, #286886 0%, transparent 60%), #142f56;
+    background: linear-gradient(160deg, rgba(15, 45, 100, 0.78), rgba(40, 110, 175, 0.68)), url("logot3.png");
+    background-size: cover;
+    background-position: center;
     text-align: left;
     overflow: hidden;
 }
