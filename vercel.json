@@ -1,0 +1,16 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/prieto-mesa-de-examen",
+      "destination": "/mesa_de_examen",
+      "permanent": true
+    },
+    {
+      "source": "/prieto-mesa-de-examen.html",
+      "destination": "/mesa_de_examen",
+      "permanent": true
+    }
+  ]
+}
