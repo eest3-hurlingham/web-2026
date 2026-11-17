@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tecnica3hurlingham.com.ar/sitemap.xml
+Sitemap: https://tecnica3hurlingham.edu.ar/sitemap.xml
