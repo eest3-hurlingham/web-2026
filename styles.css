@@ -1763,3 +1763,32 @@ nav.nav-open .hamburger span:nth-child(3) {
         grid-template-columns: 1fr;
     }
 }
+
+.expo-texto.expo-seccion {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    margin: 1rem 0 0;
+    box-shadow: none;
+}
+
+.expo-seccion h2 {
+    max-width: 44rem;
+    margin: 0 auto 0.75rem;
+    color: #193568;
+    text-align: left;
+    font-size: clamp(1.35rem, 3vw, 2rem);
+}
+
+.expo-seccion > figure {
+    width: min(100%, 44rem);
+}
+
+.expo-primaria {
+    max-width: 58rem;
+    margin: 1.5rem auto 0;
+}
+
+.expo-primaria img {
+    aspect-ratio: auto;
+}
