@@ -25,4 +25,8 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://tecnica3hurlingham.edu.ar/expo-tecnica-2026</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
 </urlset>
