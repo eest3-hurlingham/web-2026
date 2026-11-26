@@ -39,6 +39,7 @@ nav .logo {
 }
 
 nav .logo img {
+    width: auto;
     height: 44px;
     border-radius: 8px;
     object-fit: cover;
@@ -125,7 +126,7 @@ nav details ul li a:hover {
 /* ── HERO ── */
 .hero {
     background: linear-gradient(160deg, rgba(15, 45, 100, 0.78), rgba(40, 110, 175, 0.68)),
-        url("logot3.png");
+        url("images/logo-fondo.png");
     background-size: cover;
     background-position: center;
     padding: 140px 20px;
@@ -1600,7 +1601,7 @@ nav.nav-open .hamburger span:nth-child(3) {
     align-items: center;
     gap: clamp(24px, 5vw, 80px);
     padding: clamp(48px, 7vw, 100px) max(24px, calc((100vw - 1100px) / 2));
-    background: linear-gradient(160deg, rgba(15, 45, 100, 0.78), rgba(40, 110, 175, 0.68)), url("logot3.png");
+    background: linear-gradient(160deg, rgba(15, 45, 100, 0.78), rgba(40, 110, 175, 0.68)), url("images/logo-fondo.png");
     background-size: cover;
     background-position: center;
     text-align: left;

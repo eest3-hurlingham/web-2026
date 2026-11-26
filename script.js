@@ -67,6 +67,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 seleccionada = miniatura;
                 seleccionada.setAttribute('aria-current', 'true');
                 enlace.href = miniatura.href;
+                imagen.removeAttribute('srcset');
+                imagen.removeAttribute('sizes');
                 imagen.src = miniatura.href;
                 indicador.textContent = `Foto ${indice + 1} de ${miniaturas.length}`;
                 enlace.focus({ preventScroll: true });
