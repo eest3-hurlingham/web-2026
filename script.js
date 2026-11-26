@@ -39,64 +39,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const equipo = document.querySelector('#integracion .carrusel-inner');
     if (!equipo) return;
 
-    const fichas = [...equipo.children];
-    const pausa = equipo.parentElement.querySelector('.equipo-pausa');
-    const movil = window.matchMedia('(max-width: 768px)');
-    const movimientoReducido = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let pausado = movimientoReducido.matches;
-    let temporizador;
+    const movil = window.matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)');
 
-    fichas.forEach((ficha) => {
+    [...equipo.children].forEach((ficha) => {
         const copia = ficha.cloneNode(true);
         copia.setAttribute('aria-hidden', 'true');
         equipo.append(copia);
     });
-    equipo.classList.add('carrusel-inner--animado');
 
-    function avanzar() {
-        const limite = equipo.scrollWidth - equipo.clientWidth;
-        const anchoFicha = fichas[0].offsetWidth;
-        const siguiente = (Math.round(equipo.scrollLeft / anchoFicha) + 1) * anchoFicha;
-        equipo.scrollTo({
-            left: equipo.scrollLeft >= limite - 1 ? 0 : Math.min(siguiente, limite),
-            behavior: movimientoReducido.matches ? 'instant' : 'smooth'
-        });
-    }
-
-    function actualizarAvance() {
-        window.clearInterval(temporizador);
-        pausa.hidden = !movil.matches;
-        pausa.textContent = pausado ? 'Reproducir rotación del equipo' : 'Pausar rotación del equipo';
+    function ajustarEquipo() {
+        equipo.classList.toggle('carrusel-inner--animado', !movil.matches);
         if (movil.matches) {
             equipo.tabIndex = 0;
-            if (!pausado && !document.hidden) {
-                temporizador = window.setInterval(avanzar, 5000);
-            }
         } else {
             equipo.removeAttribute('tabindex');
-            equipo.scrollLeft = 0;
         }
     }
 
-    function detenerAvance() {
-        if (!movil.matches || pausado) return;
-        pausado = true;
-        actualizarAvance();
-    }
-
-    equipo.addEventListener('pointerdown', detenerAvance);
-    equipo.addEventListener('focus', detenerAvance);
-    pausa.addEventListener('click', () => {
-        pausado = !pausado;
-        actualizarAvance();
-    });
-    movil.addEventListener('change', actualizarAvance);
-    movimientoReducido.addEventListener('change', () => {
-        pausado = movimientoReducido.matches;
-        actualizarAvance();
-    });
-    document.addEventListener('visibilitychange', actualizarAvance);
-    actualizarAvance();
+    movil.addEventListener('change', ajustarEquipo);
+    ajustarEquipo();
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -137,33 +98,57 @@ document.addEventListener('DOMContentLoaded', function () {
     const controles = avisos.querySelector('.avisos-controles');
     const estado = avisos.querySelector('.avisos-estado');
     const pausa = avisos.querySelector('.aviso-pausa');
+    const movil = window.matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)');
     const movimientoReducido = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const titulo = document.createElement('span');
+    titulo.className = 'avisos-estado-titulo';
     let actual = 0;
     let pausado = movimientoReducido.matches;
     let temporizador;
-    let gesto;
-    let omitirClic = false;
-    let ratonEncima = false;
 
     function mostrar(indice) {
         actual = (indice + paneles.length) % paneles.length;
         paneles.forEach((panel, posicion) => {
-            panel.hidden = posicion !== actual;
+            panel.hidden = !movil.matches && posicion !== actual;
         });
-        const titulo = document.createElement('span');
-        titulo.className = 'avisos-estado-titulo';
         titulo.textContent = paneles[actual].querySelector('h3').textContent;
         estado.replaceChildren(`${actual + 1} / ${paneles.length} `, titulo);
+    }
+
+    function posicionDelPanel(panel) {
+        return panel.offsetLeft - paneles[0].offsetLeft;
+    }
+
+    function actualizarAvisoVisible() {
+        if (!movil.matches) return;
+        const desplazamiento = contenedor.scrollLeft;
+        const masCercano = paneles.reduce((mejor, panel, indice) => {
+            const distancia = Math.abs(posicionDelPanel(panel) - desplazamiento);
+            return distancia < Math.abs(posicionDelPanel(paneles[mejor]) - desplazamiento) ? indice : mejor;
+        }, 0);
+        if (masCercano !== actual) mostrar(masCercano);
     }
 
     function actualizarAvance() {
         window.clearInterval(temporizador);
         pausa.textContent = pausado ? 'Reproducir' : 'Pausar';
-        const detenido = pausado || gesto || ratonEncima || avisos.matches(':focus-within') || document.hidden;
+        const detenido = movil.matches || pausado ||
+            avisos.matches(':hover, :focus-within') || document.hidden;
         estado.setAttribute('aria-live', detenido ? 'polite' : 'off');
         if (!detenido) {
             temporizador = window.setInterval(() => mostrar(actual + 1), 3000);
         }
+    }
+
+    function ajustarAvisos() {
+        mostrar(actual);
+        if (movil.matches) {
+            contenedor.tabIndex = 0;
+            contenedor.scrollLeft = posicionDelPanel(paneles[actual]);
+        } else {
+            contenedor.removeAttribute('tabindex');
+        }
+        actualizarAvance();
     }
 
     controles.querySelector('.aviso-anterior').addEventListener('click', () => mostrar(actual - 1));
@@ -172,55 +157,20 @@ document.addEventListener('DOMContentLoaded', function () {
         pausado = !pausado;
         actualizarAvance();
     });
-    contenedor.addEventListener('pointerdown', (evento) => {
-        omitirClic = false;
-        if (evento.pointerType !== 'touch' || !evento.isPrimary) return;
-        gesto = { id: evento.pointerId, x: evento.clientX, y: evento.clientY };
-        actualizarAvance();
-    });
-    contenedor.addEventListener('pointerup', (evento) => {
-        if (gesto?.id !== evento.pointerId) return;
-        const horizontal = evento.clientX - gesto.x;
-        const vertical = evento.clientY - gesto.y;
-        gesto = undefined;
-        if (Math.abs(horizontal) >= 40 && Math.abs(horizontal) > 1.4 * Math.abs(vertical)) {
-            omitirClic = true;
-            mostrar(actual + (horizontal < 0 ? 1 : -1));
-        }
-        actualizarAvance();
-    });
-    contenedor.addEventListener('pointercancel', (evento) => {
-        if (gesto?.id !== evento.pointerId) return;
-        gesto = undefined;
-        actualizarAvance();
-    });
-    contenedor.addEventListener('click', (evento) => {
-        if (!omitirClic || evento.detail === 0) return;
-        evento.preventDefault();
-        evento.stopPropagation();
-        omitirClic = false;
-    }, true);
-    avisos.addEventListener('pointerenter', (evento) => {
-        if (evento.pointerType !== 'mouse') return;
-        ratonEncima = true;
-        actualizarAvance();
-    });
-    avisos.addEventListener('pointerleave', (evento) => {
-        if (evento.pointerType !== 'mouse') return;
-        ratonEncima = false;
-        actualizarAvance();
-    });
+    contenedor.addEventListener('scroll', actualizarAvisoVisible, { passive: true });
+    avisos.addEventListener('mouseenter', actualizarAvance);
+    avisos.addEventListener('mouseleave', actualizarAvance);
     avisos.addEventListener('focusin', actualizarAvance);
     avisos.addEventListener('focusout', () => window.requestAnimationFrame(actualizarAvance));
     document.addEventListener('visibilitychange', actualizarAvance);
+    movil.addEventListener('change', ajustarAvisos);
     movimientoReducido.addEventListener('change', () => {
         pausado = movimientoReducido.matches;
         actualizarAvance();
     });
     contenedor.setAttribute('data-carrusel', '');
-    mostrar(0);
     controles.hidden = false;
-    actualizarAvance();
+    ajustarAvisos();
 });
 
 /* Entradas progresivas de la portada. El contenido siempre parte visible. */

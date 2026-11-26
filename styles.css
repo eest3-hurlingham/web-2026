@@ -255,10 +255,6 @@ h2 {
     gap: 1rem;
 }
 
-.avisos-paneles[data-carrusel] {
-    touch-action: pan-y pinch-zoom;
-}
-
 .avisos-paneles[data-carrusel] > .aviso {
     grid-area: 1 / 1;
 }
@@ -1516,42 +1512,6 @@ nav.nav-open .hamburger span:nth-child(3) {
         grid-template-columns: 1fr;
     }
 
-    .carrusel-inner {
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        overscroll-behavior-x: contain;
-    }
-
-    .carrusel-inner:focus-visible {
-        outline: 2px solid #193568;
-        outline-offset: -2px;
-    }
-
-    .carrusel-item {
-        flex: 0 0 50%;
-        min-width: 0;
-        scroll-snap-align: start;
-    }
-
-    .equipo-pausa {
-        min-height: 44px;
-        margin: 0.5rem auto 0;
-        padding: 0.25rem 0.75rem;
-        border: 1px solid #b2d1e8;
-        border-radius: 999px;
-        background: #edf5fb;
-        color: #193568;
-        font: inherit;
-        font-size: 0.875rem;
-        cursor: pointer;
-    }
-
-    .equipo-pausa:not([hidden]) {
-        display: block;
-    }
-
     .carrusel-item img,
     .equipo-iniciales {
         width: 130px;
@@ -1597,7 +1557,67 @@ nav.nav-open .hamburger span:nth-child(3) {
     }
 }
 
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+    .avisos-paneles[data-carrusel] {
+        position: relative;
+        grid-auto-flow: column;
+        grid-auto-columns: 92%;
+        align-items: start;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: #c8e6fa #193568;
+    }
+
+    .avisos-paneles[data-carrusel] > .aviso {
+        grid-area: auto;
+        grid-template-columns: minmax(0, 1fr);
+        scroll-snap-align: start;
+    }
+
+    .avisos-paneles:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 3px;
+    }
+
+    .avisos-controles .aviso-anterior,
+    .avisos-controles .aviso-siguiente,
+    .avisos-controles .aviso-pausa {
+        display: none;
+    }
+
+    .avisos-centro {
+        padding: 0.3rem 0.65rem;
+    }
+
+    .carrusel-inner {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: #54749a #edf5fb;
+    }
+
+    .carrusel-inner:focus-visible {
+        outline: 2px solid #193568;
+        outline-offset: -2px;
+    }
+
+    .carrusel-item {
+        flex: 0 0 50%;
+        min-width: 0;
+        scroll-snap-align: start;
+    }
+}
+
 @media (max-width: 480px) {
+    .carrusel-item {
+        flex-basis: 86%;
+    }
+
     nav .logo img {
         height: 32px;
     }
@@ -1617,10 +1637,6 @@ nav.nav-open .hamburger span:nth-child(3) {
 
     .galeria-destacada img {
         height: clamp(12rem, 64vw, 18rem);
-    }
-
-    .carrusel-item {
-        flex-basis: 100%;
     }
 
     .footer-social a {
