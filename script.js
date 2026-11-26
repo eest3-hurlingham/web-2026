@@ -39,12 +39,64 @@ document.addEventListener('DOMContentLoaded', function () {
     const equipo = document.querySelector('#integracion .carrusel-inner');
     if (!equipo) return;
 
-    [...equipo.children].forEach((ficha) => {
+    const fichas = [...equipo.children];
+    const pausa = equipo.parentElement.querySelector('.equipo-pausa');
+    const movil = window.matchMedia('(max-width: 768px)');
+    const movimientoReducido = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let pausado = movimientoReducido.matches;
+    let temporizador;
+
+    fichas.forEach((ficha) => {
         const copia = ficha.cloneNode(true);
         copia.setAttribute('aria-hidden', 'true');
         equipo.append(copia);
     });
     equipo.classList.add('carrusel-inner--animado');
+
+    function avanzar() {
+        const limite = equipo.scrollWidth - equipo.clientWidth;
+        const anchoFicha = fichas[0].offsetWidth;
+        const siguiente = (Math.round(equipo.scrollLeft / anchoFicha) + 1) * anchoFicha;
+        equipo.scrollTo({
+            left: equipo.scrollLeft >= limite - 1 ? 0 : Math.min(siguiente, limite),
+            behavior: movimientoReducido.matches ? 'instant' : 'smooth'
+        });
+    }
+
+    function actualizarAvance() {
+        window.clearInterval(temporizador);
+        pausa.hidden = !movil.matches;
+        pausa.textContent = pausado ? 'Reproducir rotación del equipo' : 'Pausar rotación del equipo';
+        if (movil.matches) {
+            equipo.tabIndex = 0;
+            if (!pausado && !document.hidden) {
+                temporizador = window.setInterval(avanzar, 5000);
+            }
+        } else {
+            equipo.removeAttribute('tabindex');
+            equipo.scrollLeft = 0;
+        }
+    }
+
+    function detenerAvance() {
+        if (!movil.matches || pausado) return;
+        pausado = true;
+        actualizarAvance();
+    }
+
+    equipo.addEventListener('pointerdown', detenerAvance);
+    equipo.addEventListener('focus', detenerAvance);
+    pausa.addEventListener('click', () => {
+        pausado = !pausado;
+        actualizarAvance();
+    });
+    movil.addEventListener('change', actualizarAvance);
+    movimientoReducido.addEventListener('change', () => {
+        pausado = movimientoReducido.matches;
+        actualizarAvance();
+    });
+    document.addEventListener('visibilitychange', actualizarAvance);
+    actualizarAvance();
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -89,6 +141,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let actual = 0;
     let pausado = movimientoReducido.matches;
     let temporizador;
+    let gesto;
+    let omitirClic = false;
+    let ratonEncima = false;
 
     function mostrar(indice) {
         actual = (indice + paneles.length) % paneles.length;
@@ -104,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function actualizarAvance() {
         window.clearInterval(temporizador);
         pausa.textContent = pausado ? 'Reproducir' : 'Pausar';
-        const detenido = pausado || avisos.matches(':hover, :focus-within') || document.hidden;
+        const detenido = pausado || gesto || ratonEncima || avisos.matches(':focus-within') || document.hidden;
         estado.setAttribute('aria-live', detenido ? 'polite' : 'off');
         if (!detenido) {
             temporizador = window.setInterval(() => mostrar(actual + 1), 3000);
@@ -117,8 +172,44 @@ document.addEventListener('DOMContentLoaded', function () {
         pausado = !pausado;
         actualizarAvance();
     });
-    avisos.addEventListener('mouseenter', actualizarAvance);
-    avisos.addEventListener('mouseleave', actualizarAvance);
+    contenedor.addEventListener('pointerdown', (evento) => {
+        omitirClic = false;
+        if (evento.pointerType !== 'touch' || !evento.isPrimary) return;
+        gesto = { id: evento.pointerId, x: evento.clientX, y: evento.clientY };
+        actualizarAvance();
+    });
+    contenedor.addEventListener('pointerup', (evento) => {
+        if (gesto?.id !== evento.pointerId) return;
+        const horizontal = evento.clientX - gesto.x;
+        const vertical = evento.clientY - gesto.y;
+        gesto = undefined;
+        if (Math.abs(horizontal) >= 40 && Math.abs(horizontal) > 1.4 * Math.abs(vertical)) {
+            omitirClic = true;
+            mostrar(actual + (horizontal < 0 ? 1 : -1));
+        }
+        actualizarAvance();
+    });
+    contenedor.addEventListener('pointercancel', (evento) => {
+        if (gesto?.id !== evento.pointerId) return;
+        gesto = undefined;
+        actualizarAvance();
+    });
+    contenedor.addEventListener('click', (evento) => {
+        if (!omitirClic || evento.detail === 0) return;
+        evento.preventDefault();
+        evento.stopPropagation();
+        omitirClic = false;
+    }, true);
+    avisos.addEventListener('pointerenter', (evento) => {
+        if (evento.pointerType !== 'mouse') return;
+        ratonEncima = true;
+        actualizarAvance();
+    });
+    avisos.addEventListener('pointerleave', (evento) => {
+        if (evento.pointerType !== 'mouse') return;
+        ratonEncima = false;
+        actualizarAvance();
+    });
     avisos.addEventListener('focusin', actualizarAvance);
     avisos.addEventListener('focusout', () => window.requestAnimationFrame(actualizarAvance));
     document.addEventListener('visibilitychange', actualizarAvance);
