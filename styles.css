@@ -281,7 +281,7 @@ h2 {
     position: relative;
     isolation: isolate;
     grid-template-columns: minmax(0, 1fr);
-    align-items: end;
+    align-items: start;
     min-height: clamp(21rem, 38vw, 28rem);
     overflow: hidden;
     background: #193568;
@@ -304,7 +304,7 @@ h2 {
 
 .aviso--expo::before {
     z-index: -1;
-    background: linear-gradient(0deg, rgb(9 23 45 / 98%) 0%, rgb(9 23 45 / 82%) 36%, rgb(9 23 45 / 12%) 78%, transparent);
+    background: linear-gradient(180deg, rgb(9 23 45 / 94%) 0%, rgb(9 23 45 / 84%) 26%, rgb(9 23 45 / 48%) 43%, transparent 64%);
     content: "";
 }
 
@@ -320,19 +320,29 @@ h2 {
 .aviso--expo .aviso-expo-enlace {
     display: inline-flex;
     align-items: center;
-    box-sizing: border-box;
+    gap: 0.65rem;
     min-height: 44px;
-    padding: 0.45rem 0.85rem;
-    border-radius: 8px;
-    background: #fff;
-    color: #193568;
+    padding: 0.45rem 0.95rem;
+    border: 1px solid rgb(255 255 255 / 65%);
+    border-radius: 999px;
+    background: rgb(9 23 45 / 76%);
+    color: #fff;
     font-weight: 600;
     text-decoration: none;
 }
 
-.aviso-expo-enlace:hover,
-.aviso-expo-enlace:focus-visible {
-    text-decoration: underline;
+.aviso-expo-enlace::after {
+    content: "";
+    flex: 0 0 0.45rem;
+    height: 0.45rem;
+    border-top: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
+}
+
+.aviso--expo .aviso-expo-enlace:hover {
+    background: #193568;
+    border-color: #fff;
 }
 
 .aviso-expo-enlace:focus-visible {
@@ -407,6 +417,7 @@ h2 {
     display: block;
     width: 100%;
     height: auto;
+    border-radius: 12px;
 }
 
 .aviso-logo {
@@ -880,6 +891,7 @@ h2 {
 }
 
 .carrusel-inner {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -907,7 +919,7 @@ h2 {
     min-width: 0;
 }
 
-.carrusel-inner--arrastrable > .carrusel-item[aria-hidden="true"] {
+.carrusel-inner--circular > .carrusel-item[aria-hidden="true"] {
     display: block;
 }
 
@@ -1641,8 +1653,11 @@ nav.nav-open .hamburger span:nth-child(3) {
     }
 
     .avisos-paneles[data-carrusel] .aviso-placa--completa img {
-        height: 100%;
-        object-fit: contain;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        margin-inline: auto;
     }
 
     .avisos-paneles:focus-visible {

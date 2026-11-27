@@ -54,11 +54,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let cuadro;
     let tiempoAnterior;
     let posicion;
+    let finDeScroll;
     equipo.tabIndex = 0;
 
     function desplazar(destino) {
         // Las tres tandas son idénticas. La del medio deja recorrido a ambos lados.
-        const vuelta = equipo.clientWidth;
+        const vuelta = fichas[0].offsetLeft;
         if (!vuelta) return;
         posicion = vuelta + ((destino % vuelta) + vuelta) % vuelta;
         equipo.scrollLeft = posicion;
@@ -83,15 +84,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function ajustarEquipo() {
         equipo.classList.toggle('carrusel-inner--arrastrable', !movil.matches);
-        if (movil.matches) {
-            anteriores.concat(siguientes).forEach((ficha) => ficha.remove());
-            equipo.scrollLeft = 0;
-        } else {
-            equipo.prepend(...anteriores);
-            equipo.append(...siguientes);
-            desplazar(0);
-        }
+        desplazar(0);
         actualizarAnimacion();
+    }
+
+    function cerrarVueltaEquipo() {
+        if (arrastre || tiempoAnterior !== undefined) return;
+        const inicio = fichas[0].offsetLeft;
+        const fin = siguientes[0].offsetLeft;
+        const actual = equipo.scrollLeft;
+        if (actual < inicio - 1) {
+            equipo.scrollLeft = actual + inicio;
+        } else if (actual >= fin - 1) {
+            equipo.scrollLeft = actual - inicio;
+        }
+    }
+
+    equipo.prepend(...anteriores);
+    equipo.append(...siguientes);
+    equipo.classList.add('carrusel-inner--circular');
+
+    if ('onscrollend' in equipo) {
+        equipo.addEventListener('scrollend', cerrarVueltaEquipo);
+    } else {
+        equipo.addEventListener('scroll', () => {
+            window.clearTimeout(finDeScroll);
+            if (movil.matches) {
+                finDeScroll = window.setTimeout(cerrarVueltaEquipo, 200);
+            }
+        }, { passive: true });
     }
 
     equipo.addEventListener('pointerdown', (evento) => {
