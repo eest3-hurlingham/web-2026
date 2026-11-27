@@ -336,7 +336,7 @@ h2 {
     padding: 0.45rem 0.95rem;
     border: 1px solid var(--boton-borde, #7895b4);
     border-radius: 999px;
-    background: var(--boton-fondo, #f7fbff);
+    background: var(--boton-fondo, rgb(224 239 252 / 54%));
     color: var(--boton-texto, #193568);
     font-family: inherit;
     font-size: var(--boton-tamano, 0.875rem);
@@ -384,7 +384,7 @@ details.flotante[open] > summary::after,
     .flotante-menu > a
 ):hover,
 .card-descarga:hover .btn-dl {
-    background: var(--boton-fondo-hover, #e5eff9);
+    background: var(--boton-fondo-hover, rgb(217 233 249 / 78%));
     border-color: var(--boton-borde-hover, #42678f);
 }
 
@@ -1202,6 +1202,9 @@ details.flotante {
 
 details.flotante > summary,
 .flotante-menu > a {
+    --boton-fondo: rgb(247 251 255 / 87%);
+    --boton-fondo-hover: rgb(229 239 249 / 94%);
+    backdrop-filter: blur(8px);
     box-shadow: 0 2px 8px rgb(25 53 104 / 12%);
 }
 
