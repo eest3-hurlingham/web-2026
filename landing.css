@@ -1,0 +1,51 @@
+/* Portada 2027: integración gradual con los componentes existentes. */
+.landing-2027 { background: var(--t3-bg); color: var(--t3-ink); font-family: var(--t3-font); line-height: 1.6; }
+.landing-2027 header.site-header { position: sticky; top: 0; z-index: 1000; background: white; }
+.landing-2027 nav { position: static; padding: .75rem max(1rem, calc((100% - var(--t3-width)) / 2)); box-shadow: none; border-bottom: 1px solid var(--t3-border); }
+.landing-2027 nav .logo { color: var(--t3-brand); font-size: 1rem; min-width: 0; }
+.landing-2027 nav :is(a, summary) { font-family: var(--t3-font); }
+.landing-2027 :is(a, button, summary, input, textarea):focus-visible { outline: 3px solid var(--t3-accent); outline-offset: 3px; }
+.landing-2027 .skip-link { position: absolute; top: .5rem; left: 1rem; z-index: 2000; transform: translateY(-200%); background: white; color: var(--t3-ink); padding: .5rem 1rem; }
+.landing-2027 .skip-link:focus { transform: none; }
+.landing-2027 .hero--2027 { display: grid; grid-template-columns: minmax(0,1fr); gap: var(--t3-space-3); padding: clamp(1.5rem,4vw,4rem); text-align: left; color: white; background: var(--t3-ink); border-radius: var(--t3-radius); margin: 1rem auto 0; align-items: center; }
+.landing-2027 .hero--2027 h1 { font-size: var(--t3-title); line-height: 1.04; letter-spacing: -.04em; text-shadow: none; }
+.landing-2027 .hero--2027 p { font-size: clamp(1rem,2vw,1.2rem); text-shadow: none; opacity: 1; max-width: 42ch; }
+.landing-2027 .hero--2027 .hero-kicker { color: var(--t3-highlight); font-size: .85rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+.landing-2027 .hero-photo { margin: 0; min-width: 0; }
+.landing-2027 .hero-photo img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--t3-radius); }
+.landing-2027 .hero-photo figcaption { margin-top: .5rem; font-size: .85rem; color: #dbe6f2; }
+.landing-2027 main > section:not(.hero) { width: min(calc(100% - 2rem), var(--t3-width)); max-width: none; margin: var(--t3-space-5) auto; padding: 0; background: transparent; box-shadow: none; border-radius: 0; scroll-margin-top: 9rem; }
+.landing-2027 main > section h2 { color: var(--t3-ink); font-size: var(--t3-heading); text-align: left; line-height: 1.15; letter-spacing: -.025em; }
+.landing-2027 .subtitulo { text-align: left; color: var(--t3-muted); margin: 0 0 1.5rem; max-width: 75ch; }
+.landing-2027 main > #avisos { background: var(--t3-brand); padding: clamp(1rem,3vw,2.5rem); border-radius: var(--t3-radius); }
+.landing-2027 #avisos h2 { color: white; }
+.landing-2027 .avisos-encabezado { text-align: left; }
+.landing-2027 .historia { grid-template-columns: minmax(0,1fr); gap: 1rem; }
+.landing-2027 .historia figure { margin: 0; }
+.landing-2027 .historia img { display: block; height: auto; aspect-ratio: 4 / 3; border-radius: .85rem; box-shadow: none; }
+.landing-2027 .historia figcaption { margin-top: .5rem; color: var(--t3-muted); font-size: .875rem; }
+.landing-2027 .formacion-intro { max-width: 75ch; }
+.landing-2027 .competencias-lista { display: grid; grid-template-columns: minmax(0,1fr); gap: .75rem; padding: 0; list-style-position: inside; }
+.landing-2027 .competencias-lista li { padding: 1rem; background: white; border: 1px solid var(--t3-border); border-radius: .85rem; }
+.landing-2027 .competencias-lista li::marker { color: var(--t3-accent); font-weight: bold; }
+.landing-2027 .contact-box { background: white; border: 1px solid var(--t3-border); padding: clamp(1rem,3vw,2rem); }
+.landing-2027 .mapa { width: 100%; }
+.landing-2027 .equipo-foto--carolina { object-position: center 20%; }
+.landing-2027 .equipo-foto--melina { object-position: center 25%; }
+.landing-2027 footer { background: var(--t3-ink); margin-top: 0; }
+.landing-2027 .footer-social a { width: auto; height: auto; min-height: 44px; padding: .5rem 1rem; font-size: .875rem; border-radius: var(--t3-pill); background: transparent; border: 1px solid #a6b8cd; box-shadow: none; }
+.landing-2027 nav:not(.nav-enhanced) > .hamburger { display: none; }
+.landing-2027 nav:not(.nav-enhanced) > ul { display: flex; }
+@media (max-width: 768px) {
+    .landing-2027 nav:not(.nav-enhanced) > ul { flex-direction: row; flex-wrap: wrap; }
+    .landing-2027 nav:not(.nav-enhanced) > ul > li { width: auto; }
+    .landing-2027 header.site-header:has(nav:not(.nav-enhanced)) { position: static; }
+    .landing-2027 nav.nav-open { max-height: 85dvh; overflow-y: auto; }
+}
+@media (min-width: 48rem) {
+    .landing-2027 .hero--2027 { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+    .landing-2027 .historia { grid-template-columns: repeat(3,minmax(0,1fr)); }
+    .landing-2027 .competencias-lista { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .landing-2027 .competencias-lista li:last-child { grid-column: 1 / -1; }
+}
