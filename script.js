@@ -4,8 +4,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!hamburger || !nav) return;
 
+    nav.classList.add('nav-enhanced');
+    const setMenu = (open) => {
+        nav.classList.toggle('nav-open', open);
+        hamburger.setAttribute('aria-expanded', String(open));
+    };
+    setMenu(false);
     hamburger.addEventListener('click', function () {
-        nav.classList.toggle('nav-open');
+        setMenu(!nav.classList.contains('nav-open'));
+    });
+    nav.addEventListener('click', (event) => {
+        if (event.target.closest('a')) setMenu(false);
     });
 
     document.addEventListener('click', function (e) {
@@ -14,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         if (!nav.contains(e.target)) {
-            nav.classList.remove('nav-open');
+            setMenu(false);
         }
     });
 
@@ -28,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
             menu.querySelector('summary').focus();
             e.preventDefault();
         } else if (nav.classList.contains('nav-open')) {
-            nav.classList.remove('nav-open');
+            setMenu(false);
             hamburger.focus();
             e.preventDefault();
         }
