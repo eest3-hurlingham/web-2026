@@ -889,30 +889,37 @@ h2 {
     display: none;
 }
 
-@media (width > 768px) and (prefers-reduced-motion: no-preference) {
-    .carrusel-inner--animado {
-        width: 200%;
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        animation: desplazar-equipo 20s linear infinite;
-    }
+.carrusel-inner--arrastrable {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    cursor: grab;
+    user-select: none;
+}
 
-    .carrusel-inner--animado:hover {
-        animation-play-state: paused;
-    }
+.carrusel-inner--arrastrando {
+    cursor: grabbing;
+}
 
-    .carrusel-inner--animado > .carrusel-item {
-        flex: 0 0 12.5%;
-        min-width: 0;
-    }
+.carrusel-inner--arrastrable > .carrusel-item {
+    flex: 0 0 25%;
+    min-width: 0;
+}
 
-    .carrusel-inner--animado > .carrusel-item[aria-hidden="true"] {
-        display: block;
-    }
+.carrusel-inner--arrastrable > .carrusel-item[aria-hidden="true"] {
+    display: block;
+}
 
-    @keyframes desplazar-equipo {
-        to { transform: translateX(-50%); }
-    }
+.carrusel-inner--arrastrable :is(img, .equipo-iniciales) {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+}
+
+.carrusel-inner:focus-visible {
+    outline: 2px solid #193568;
+    outline-offset: -2px;
 }
 
 .carrusel-item {
@@ -1558,10 +1565,28 @@ nav.nav-open .hamburger span:nth-child(3) {
 }
 
 @media (max-width: 768px), (hover: none) and (pointer: coarse) {
+    #avisos {
+        scroll-margin-top: 4rem;
+        padding: 0.85rem clamp(0.75rem, 3vw, 1.25rem);
+    }
+
+    .avisos-encabezado p {
+        display: none;
+    }
+
+    .avisos-encabezado h2 {
+        margin-bottom: 0.75rem;
+    }
+
+    .avisos-controles {
+        margin-top: 0.65rem;
+    }
+
     .avisos-paneles[data-carrusel] {
         position: relative;
         grid-auto-flow: column;
-        grid-auto-columns: 92%;
+        grid-auto-columns: 96%;
+        gap: 0.65rem;
         overflow-x: auto;
         overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory;
@@ -1576,13 +1601,43 @@ nav.nav-open .hamburger span:nth-child(3) {
     }
 
     .avisos-paneles[data-carrusel] > .aviso:not(.aviso--expo) {
-        grid-template-rows: auto 1fr;
+        align-content: start;
+        gap: 0.65rem;
     }
 
-    .avisos-paneles[data-carrusel] :is(.aviso-placa--completa, .aviso-logo) {
-        align-self: end;
-        aspect-ratio: 8 / 7;
-        margin-block: 0;
+    .avisos-paneles[data-carrusel] .aviso--expo {
+        min-height: clamp(17rem, 46svh, 23rem);
+    }
+
+    .avisos-paneles[data-carrusel] .aviso h3 {
+        font-size: 1.2rem;
+    }
+
+    .avisos-paneles[data-carrusel] .aviso--expo h3 {
+        font-size: 1.45rem;
+    }
+
+    .avisos-paneles[data-carrusel] .aviso-texto {
+        font-size: 0.9rem;
+        line-height: 1.45;
+    }
+
+    .avisos-paneles[data-carrusel] .aviso-texto > :is(p, ul) {
+        margin: 0.5rem 0 0;
+    }
+
+    .avisos-paneles[data-carrusel] .aviso-expo-enlace {
+        margin-top: 0.75rem;
+    }
+
+    .avisos-paneles[data-carrusel] .aviso-logo {
+        display: none;
+    }
+
+    .avisos-paneles[data-carrusel] .aviso-placa--completa {
+        width: 100%;
+        height: clamp(7rem, 21svh, 10rem);
+        margin: 0;
     }
 
     .avisos-paneles[data-carrusel] .aviso-placa--completa img {
@@ -1615,15 +1670,20 @@ nav.nav-open .hamburger span:nth-child(3) {
         scrollbar-color: #54749a #edf5fb;
     }
 
-    .carrusel-inner:focus-visible {
-        outline: 2px solid #193568;
-        outline-offset: -2px;
-    }
-
     .carrusel-item {
         flex: 0 0 50%;
         min-width: 0;
         scroll-snap-align: start;
+    }
+}
+
+@media (max-width: 480px) and (max-height: 620px) {
+    .avisos-paneles[data-carrusel] .aviso-placa--completa {
+        height: 6.25rem;
+    }
+
+    .avisos-paneles[data-carrusel] .aviso {
+        padding: 0.75rem;
     }
 }
 

@@ -40,22 +40,88 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!equipo) return;
 
     const movil = window.matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)');
-
-    [...equipo.children].forEach((ficha) => {
+    const movimientoReducido = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const fichas = [...equipo.children];
+    const copiarFicha = (ficha) => {
         const copia = ficha.cloneNode(true);
+        copia.inert = true;
         copia.setAttribute('aria-hidden', 'true');
-        equipo.append(copia);
-    });
+        return copia;
+    };
+    const anteriores = fichas.map(copiarFicha);
+    const siguientes = fichas.map(copiarFicha);
+    let arrastre;
+    let cuadro;
+    let tiempoAnterior;
+    let posicion;
+    equipo.tabIndex = 0;
 
-    function ajustarEquipo() {
-        equipo.classList.toggle('carrusel-inner--animado', !movil.matches);
-        if (movil.matches) {
-            equipo.tabIndex = 0;
-        } else {
-            equipo.removeAttribute('tabindex');
-        }
+    function desplazar(destino) {
+        // Las tres tandas son idénticas. La del medio deja recorrido a ambos lados.
+        const vuelta = equipo.clientWidth;
+        if (!vuelta) return;
+        posicion = vuelta + ((destino % vuelta) + vuelta) % vuelta;
+        equipo.scrollLeft = posicion;
     }
 
+    function animar(tiempo) {
+        if (tiempoAnterior !== undefined) {
+            desplazar(posicion + Math.min(tiempo - tiempoAnterior, 50) * equipo.clientWidth / 20000);
+        }
+        tiempoAnterior = tiempo;
+        cuadro = window.requestAnimationFrame(animar);
+    }
+
+    function actualizarAnimacion() {
+        window.cancelAnimationFrame(cuadro);
+        tiempoAnterior = undefined;
+        if (movil.matches || movimientoReducido.matches || document.hidden ||
+            arrastre || equipo.matches(':hover, :focus-within')) return;
+        posicion = equipo.scrollLeft;
+        cuadro = window.requestAnimationFrame(animar);
+    }
+
+    function ajustarEquipo() {
+        equipo.classList.toggle('carrusel-inner--arrastrable', !movil.matches);
+        if (movil.matches) {
+            anteriores.concat(siguientes).forEach((ficha) => ficha.remove());
+            equipo.scrollLeft = 0;
+        } else {
+            equipo.prepend(...anteriores);
+            equipo.append(...siguientes);
+            desplazar(0);
+        }
+        actualizarAnimacion();
+    }
+
+    equipo.addEventListener('pointerdown', (evento) => {
+        if (movil.matches || evento.pointerType !== 'mouse' || evento.button !== 0 || arrastre) return;
+        evento.preventDefault();
+        arrastre = { id: evento.pointerId, x: evento.clientX };
+        posicion = equipo.scrollLeft;
+        equipo.setPointerCapture(evento.pointerId);
+        equipo.classList.add('carrusel-inner--arrastrando');
+        actualizarAnimacion();
+    });
+
+    equipo.addEventListener('pointermove', (evento) => {
+        if (movil.matches || arrastre?.id !== evento.pointerId) return;
+        desplazar(posicion + arrastre.x - evento.clientX);
+        arrastre.x = evento.clientX;
+    });
+
+    equipo.addEventListener('lostpointercapture', () => {
+        arrastre = undefined;
+        equipo.classList.remove('carrusel-inner--arrastrando');
+        actualizarAnimacion();
+    });
+
+    equipo.addEventListener('mouseenter', actualizarAnimacion);
+    equipo.addEventListener('mouseleave', actualizarAnimacion);
+    equipo.addEventListener('focusin', actualizarAnimacion);
+    equipo.addEventListener('focusout', () => window.requestAnimationFrame(actualizarAnimacion));
+    document.addEventListener('visibilitychange', actualizarAnimacion);
+    movimientoReducido.addEventListener('change', actualizarAnimacion);
     movil.addEventListener('change', ajustarEquipo);
     ajustarEquipo();
 });
@@ -105,6 +171,18 @@ document.addEventListener('DOMContentLoaded', function () {
     let actual = 0;
     let pausado = movimientoReducido.matches;
     let temporizador;
+    let finDeScroll;
+    let recorrido = paneles;
+
+    function copiarPanel(panel) {
+        const copia = panel.cloneNode(true);
+        copia.inert = true;
+        copia.setAttribute('aria-hidden', 'true');
+        return copia;
+    }
+
+    const anterior = copiarPanel(paneles.at(-1));
+    const siguientes = paneles.slice(0, 2).map(copiarPanel);
 
     function mostrar(indice) {
         actual = (indice + paneles.length) % paneles.length;
@@ -115,18 +193,23 @@ document.addEventListener('DOMContentLoaded', function () {
         estado.replaceChildren(`${actual + 1} / ${paneles.length} `, titulo);
     }
 
-    function posicionDelPanel(panel) {
-        return panel.offsetLeft - paneles[0].offsetLeft;
+    function actualizarAvisoVisible() {
+        const desplazamiento = contenedor.scrollLeft;
+        const masCercano = recorrido.reduce((mejor, panel) => {
+            return Math.abs(panel.offsetLeft - desplazamiento) < Math.abs(mejor.offsetLeft - desplazamiento)
+                ? panel : mejor;
+        });
+        const indice = (recorrido.indexOf(masCercano) + paneles.length - 1) % paneles.length;
+        if (indice !== actual) mostrar(indice);
+        return masCercano;
     }
 
-    function actualizarAvisoVisible() {
-        if (!movil.matches) return;
-        const desplazamiento = contenedor.scrollLeft;
-        const masCercano = paneles.reduce((mejor, panel, indice) => {
-            const distancia = Math.abs(posicionDelPanel(panel) - desplazamiento);
-            return distancia < Math.abs(posicionDelPanel(paneles[mejor]) - desplazamiento) ? indice : mejor;
-        }, 0);
-        if (masCercano !== actual) mostrar(masCercano);
+    function cerrarVuelta() {
+        if (!movil.matches || recorrido === paneles) return;
+        const visible = actualizarAvisoVisible();
+        if (visible !== paneles[actual]) {
+            contenedor.scrollLeft = paneles[actual].offsetLeft;
+        }
     }
 
     function actualizarAvance() {
@@ -143,9 +226,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function ajustarAvisos() {
         mostrar(actual);
         if (movil.matches) {
+            contenedor.prepend(anterior);
+            contenedor.append(...siguientes);
+            recorrido = [anterior, ...paneles, ...siguientes];
             contenedor.tabIndex = 0;
-            contenedor.scrollLeft = posicionDelPanel(paneles[actual]);
+            contenedor.scrollLeft = paneles[actual].offsetLeft;
         } else {
+            [anterior, ...siguientes].forEach((panel) => panel.remove());
+            recorrido = paneles;
             contenedor.removeAttribute('tabindex');
         }
         actualizarAvance();
@@ -157,7 +245,16 @@ document.addEventListener('DOMContentLoaded', function () {
         pausado = !pausado;
         actualizarAvance();
     });
-    contenedor.addEventListener('scroll', actualizarAvisoVisible, { passive: true });
+    const tieneFinDeScroll = 'onscrollend' in contenedor;
+    contenedor.addEventListener('scroll', () => {
+        if (!movil.matches || recorrido === paneles) return;
+        actualizarAvisoVisible();
+        if (!tieneFinDeScroll) {
+            window.clearTimeout(finDeScroll);
+            finDeScroll = window.setTimeout(cerrarVuelta, 200);
+        }
+    }, { passive: true });
+    if (tieneFinDeScroll) contenedor.addEventListener('scrollend', cerrarVuelta);
     avisos.addEventListener('mouseenter', actualizarAvance);
     avisos.addEventListener('mouseleave', actualizarAvance);
     avisos.addEventListener('focusin', actualizarAvance);
@@ -202,13 +299,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelectorAll(
         '.hero h1, .hero p, section > h2, .avisos-encabezado, ' +
-        '.service-card, .historia img, .carrusel-item, .contact-box'
+        '.service-card, .historia img, .carrusel, .contact-box'
     ).forEach((elemento) => observador.observe(elemento));
 
-    document.querySelectorAll('.historia, .carrusel-inner').forEach((grupo) => {
-        [...grupo.children].forEach((elemento, indice) => {
-            elemento.dataset.demoraEntrada = (indice % 4) * 90;
-        });
+    document.querySelectorAll('.historia img').forEach((imagen, indice) => {
+        imagen.dataset.demoraEntrada = (indice % 4) * 90;
     });
     document.querySelector('.hero p').dataset.demoraEntrada = 160;
 
