@@ -1562,7 +1562,6 @@ nav.nav-open .hamburger span:nth-child(3) {
         position: relative;
         grid-auto-flow: column;
         grid-auto-columns: 92%;
-        align-items: start;
         overflow-x: auto;
         overscroll-behavior-x: contain;
         scroll-snap-type: x mandatory;
@@ -1574,6 +1573,21 @@ nav.nav-open .hamburger span:nth-child(3) {
         grid-area: auto;
         grid-template-columns: minmax(0, 1fr);
         scroll-snap-align: start;
+    }
+
+    .avisos-paneles[data-carrusel] > .aviso:not(.aviso--expo) {
+        grid-template-rows: auto 1fr;
+    }
+
+    .avisos-paneles[data-carrusel] :is(.aviso-placa--completa, .aviso-logo) {
+        align-self: end;
+        aspect-ratio: 8 / 7;
+        margin-block: 0;
+    }
+
+    .avisos-paneles[data-carrusel] .aviso-placa--completa img {
+        height: 100%;
+        object-fit: contain;
     }
 
     .avisos-paneles:focus-visible {
