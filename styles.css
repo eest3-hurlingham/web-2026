@@ -334,10 +334,10 @@ h2 {
     max-width: 100%;
     min-height: 44px;
     padding: 0.45rem 0.95rem;
-    border: 1px solid var(--boton-borde, #7895b4);
+    border: 1px solid rgb(255 255 255 / 65%);
     border-radius: 999px;
-    background: var(--boton-fondo, rgb(224 239 252 / 54%));
-    color: var(--boton-texto, #193568);
+    background: rgb(9 23 45 / 76%);
+    color: #fff;
     font-family: inherit;
     font-size: var(--boton-tamano, 0.875rem);
     font-weight: 600;
@@ -384,8 +384,8 @@ details.flotante[open] > summary::after,
     .flotante-menu > a
 ):hover,
 .card-descarga:hover .btn-dl {
-    background: var(--boton-fondo-hover, rgb(217 233 249 / 78%));
-    border-color: var(--boton-borde-hover, #42678f);
+    background: rgb(25 53 104 / 92%);
+    border-color: #fff;
 }
 
 :is(
@@ -402,11 +402,6 @@ details.flotante[open] > summary::after,
 }
 
 .aviso-expo-enlace {
-    --boton-borde: rgb(255 255 255 / 65%);
-    --boton-fondo: rgb(9 23 45 / 76%);
-    --boton-texto: #fff;
-    --boton-fondo-hover: #193568;
-    --boton-borde-hover: #fff;
     --boton-foco: #fff;
     --boton-tamano: inherit;
 }
@@ -1202,8 +1197,6 @@ details.flotante {
 
 details.flotante > summary,
 .flotante-menu > a {
-    --boton-fondo: rgb(247 251 255 / 87%);
-    --boton-fondo-hover: rgb(229 239 249 / 94%);
     backdrop-filter: blur(8px);
     box-shadow: 0 2px 8px rgb(25 53 104 / 12%);
 }
