@@ -1,0 +1,79 @@
+/* Técnica 3 — Design System 2027.
+   Hoja independiente; incorporar progresivamente durante el rediseño. */
+:root {
+    --t3-ink: #10233c;
+    --t3-muted: #455b70;
+    --t3-brand: #193568;
+    --t3-accent: #087e87;
+    --t3-highlight: #a1e8ce;
+    --t3-bg: #f5f7fa;
+    --t3-surface: #ffffff;
+    --t3-border: #cbd5e1;
+    --t3-font: system-ui, -apple-system, "Segoe UI", sans-serif;
+    --t3-text: 1rem;
+    --t3-title: clamp(2.25rem, 5vw, 4.5rem);
+    --t3-heading: clamp(1.75rem, 3.5vw, 2.75rem);
+    --t3-space-1: .5rem;
+    --t3-space-2: 1rem;
+    --t3-space-3: 1.5rem;
+    --t3-space-4: 2rem;
+    --t3-space-5: clamp(3rem, 7vw, 6rem);
+    --t3-radius: 1.25rem;
+    --t3-pill: 999px;
+    --t3-shadow: 0 8px 28px rgb(16 35 60 / 8%);
+    --t3-width: 76rem;
+    --t3-duration: 180ms;
+}
+.t3-container {
+    width: min(calc(100% - 2rem), var(--t3-width));
+    margin-inline: auto;
+}
+.t3-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--t3-space-2);
+}
+.t3-card {
+    min-width: 0;
+    padding: var(--t3-space-3);
+    border: 1px solid var(--t3-border);
+    border-radius: var(--t3-radius);
+    background: var(--t3-surface);
+    color: var(--t3-ink);
+    box-shadow: var(--t3-shadow);
+}
+.t3-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--t3-space-1);
+    min-height: 44px;
+    max-width: 100%;
+    padding: .65rem 1.15rem;
+    border: 1px solid var(--t3-brand);
+    border-radius: var(--t3-pill);
+    background: var(--t3-brand);
+    color: white;
+    font: 600 1rem/1.4 var(--t3-font);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color var(--t3-duration), color var(--t3-duration);
+}
+.t3-button:hover { background: var(--t3-ink); }
+.t3-button--glass {
+    border-color: rgb(255 255 255 / 75%);
+    background: rgb(16 35 60 / 85%);
+}
+.t3-button--glass:hover { background: var(--t3-ink); }
+.t3-button:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 5px var(--t3-ink);
+}
+@media (min-width: 48rem) {
+    .t3-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .t3-card--wide { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .t3-button { transition: none; }
+}
